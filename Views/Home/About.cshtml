@@ -1,0 +1,583 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About | Premium Deadline Management</title>
+    <meta name="description" content="Learn how Premium Deadline Management helps accountancy firms stay compliant with Companies House filing deadlines." />
+    <link rel="icon" href="~/finanza-1.0.0/img/logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Rethink+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+        :root { --bg:#f3f7ff; --card:#fff; --line:#d7e3ff; --text:#111b2f; --muted:#586788; --pri:#1769e6; --pri2:#114fb3; --soft:#eaf1ff; --accent:#f08967; --radius:18px; --section:86px; }
+        * { box-sizing:border-box; }
+        html, body { margin:0; padding:0; }
+        body { font-family:"Manrope",sans-serif; color:var(--text); background:radial-gradient(circle at 15% -10%,#d9e8ff 0%,#edf3ff 40%,#f8faff 100%); line-height:1.6; }
+        a { color:inherit; text-decoration:none; }
+        .container { width:min(1180px, calc(100% - 36px)); margin:0 auto; }
+
+        .topbar { background:linear-gradient(90deg,#1675ea,#0f62d0); color:#fff; }
+        .topbar-wrap { min-height:50px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:8px 0; }
+        .topbar-group { display:flex; gap:16px; align-items:center; flex-wrap:wrap; font-size:14px; }
+        .topbar-group a, .topbar-group span { display:inline-flex; align-items:center; gap:8px; }
+        .socials { display:inline-flex; gap:8px; }
+        .socials a { width:30px; height:30px; border:1px solid rgba(255,255,255,.45); border-radius:999px; display:inline-flex; align-items:center; justify-content:center; }
+
+        .header-shell { position:sticky; top:0; z-index:100; background:rgba(243,247,255,.93); backdrop-filter:blur(8px); border-bottom:1px solid #d6e1fa; }
+        .site-header { min-height:84px; display:flex; align-items:center; gap:16px; }
+        .brand { display:inline-flex; align-items:center; gap:10px; }
+        .brand img { height:50px; border-radius:8px; }
+        .brand b { font-family:"Space Grotesk",sans-serif; font-size:20px; letter-spacing:.01em; }
+        .brand small { color:var(--muted); font-size:11px; letter-spacing:.11em; text-transform:uppercase; display:block; line-height:1.2; }
+        .menu-toggle { display:none; margin-left:auto; width:42px; height:42px; border:1px solid var(--line); border-radius:11px; background:#fff; }
+        .main-nav { margin-left:auto; display:inline-flex; align-items:center; gap:8px; }
+        .main-nav > a, .menu-btn { border:0; background:transparent; font:inherit; font-weight:700; color:#293759; padding:9px 12px; border-radius:10px; display:inline-flex; align-items:center; gap:8px; cursor:pointer; }
+        .main-nav > a:hover, .menu-btn:hover { background:#e7f0ff; }
+        .dropdown { position:relative; }
+        .dropdown-menu { list-style:none; margin:0; padding:10px; min-width:275px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 14px 34px rgba(17,36,82,.16); position:absolute; left:0; top:calc(100% + 8px); display:none; }
+        .dropdown-menu li + li { margin-top:4px; }
+        .dropdown-menu a { display:block; padding:8px 10px; border-radius:8px; color:#2f4169; font-size:14px; font-weight:600; }
+        .dropdown-menu a:hover { background:#edf3ff; }
+        .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu, .dropdown.open .dropdown-menu { display:block; }
+        .header-actions { display:inline-flex; align-items:center; gap:10px; }
+        .logout-form { margin:0; }
+        .btn { border:0; min-height:41px; padding:0 16px; border-radius:999px; font:inherit; font-weight:700; display:inline-flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; }
+        .btn-primary { color:#fff; background:linear-gradient(90deg,var(--pri),#2080ff); box-shadow:0 10px 20px rgba(23,105,230,.27); }
+        .btn-primary:hover { background:linear-gradient(90deg,var(--pri2),#0f66db); }
+        .btn-soft { color:#194ca8; background:var(--soft); }
+
+        .about-hero {
+            margin-inline: calc(50% - 50vw);
+            background:
+                radial-gradient(circle at 86% 22%, rgba(240, 137, 103, .18), transparent 44%),
+                linear-gradient(135deg, #f6f9ff, #eef4ff);
+            border-bottom:1px solid #d8e4ff;
+            padding: 66px 0 54px;
+        }
+        .crumb {
+            display:inline-flex;
+            align-items:center;
+            gap:9px;
+            border:1px solid #d5e1fb;
+            background:#fff;
+            border-radius:999px;
+            padding:8px 14px;
+            color:#3b4d74;
+            font-size:13px;
+            font-weight:700;
+        }
+        .about-hero h1 {
+            margin:18px 0 0;
+            font-size:clamp(36px, 4.6vw, 62px);
+            line-height:1.12;
+            letter-spacing:-.02em;
+            color:#122142;
+            max-width:900px;
+            font-family:"Rethink Sans",sans-serif;
+        }
+        .about-hero p {
+            margin:14px 0 0;
+            max-width:760px;
+            color:#4f6285;
+            font-size:18px;
+        }
+
+        .about-overview,
+        .about-principles,
+        .about-process {
+            padding: var(--section) 0;
+        }
+        .about-overview-grid {
+            display:grid;
+            grid-template-columns: 6fr 6fr;
+            gap:28px;
+            align-items:center;
+        }
+        .about-visual {
+            border-radius:16px;
+            border:1px solid #dbe6ff;
+            box-shadow:0 16px 36px rgba(23,55,117,.11);
+            overflow:hidden;
+            background:#fff;
+        }
+        .about-visual img {
+            width:100%;
+            height:auto;
+            display:block;
+        }
+        .eyebrow {
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding:6px 12px;
+            border-radius:999px;
+            background:#ebf3ff;
+            color:#1859be;
+            font-size:12px;
+            font-weight:800;
+            letter-spacing:.07em;
+            text-transform:uppercase;
+        }
+        .about-copy h2 {
+            margin:14px 0 0;
+            font-size:clamp(30px, 3.8vw, 48px);
+            line-height:1.15;
+            color:#142345;
+            letter-spacing:-.02em;
+            font-family:"Rethink Sans",sans-serif;
+        }
+        .about-copy p {
+            margin:14px 0 0;
+            color:#526586;
+            font-size:17px;
+        }
+        .about-mini-grid {
+            margin-top:24px;
+            display:grid;
+            grid-template-columns:repeat(4, minmax(0,1fr));
+            gap:12px;
+        }
+        .about-mini-card {
+            border:1px solid #dde7ff;
+            background:#fff;
+            border-radius:12px;
+            padding:14px;
+        }
+        .about-mini-card h3 {
+            margin:0;
+            font-size:18px;
+            color:#11203f;
+        }
+        .about-mini-card p {
+            margin:8px 0 0;
+            font-size:15px;
+            color:#5b6c8b;
+        }
+
+        .about-principles {
+            margin-inline: calc(50% - 50vw);
+            background:#f5f8ff;
+        }
+        .section-head {
+            text-align:center;
+            max-width:760px;
+            margin:0 auto 28px;
+        }
+        .section-head h2 {
+            margin:10px 0 0;
+            color:#142345;
+            font-size:clamp(30px, 3.7vw, 46px);
+            line-height:1.15;
+            letter-spacing:-.02em;
+            font-family:"Rethink Sans",sans-serif;
+        }
+        .section-head p {
+            margin:12px 0 0;
+            color:#536684;
+            font-size:17px;
+        }
+        .principles-grid {
+            display:grid;
+            grid-template-columns:repeat(3, minmax(0,1fr));
+            gap:16px;
+        }
+        .principle-card {
+            background:#fff;
+            border:1px solid #dee8ff;
+            border-radius:14px;
+            padding:22px;
+            box-shadow:0 12px 24px rgba(18,45,100,.06);
+        }
+        .principle-icon {
+            width:46px;
+            height:46px;
+            border-radius:11px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            background:#edf4ff;
+            color:#1c65d6;
+            font-size:19px;
+        }
+        .principle-card h3 {
+            margin:12px 0 0;
+            font-size:22px;
+            line-height:1.2;
+            color:#122142;
+        }
+        .principle-card p {
+            margin:10px 0 0;
+            color:#596c8a;
+            font-size:16px;
+        }
+
+        .about-band {
+            margin-inline: calc(50% - 50vw);
+            background:linear-gradient(110deg,#0f2e70,#133d92);
+            color:#fff;
+            padding:34px 0;
+        }
+        .band-grid {
+            display:grid;
+            grid-template-columns:repeat(4,minmax(0,1fr));
+            gap:12px;
+        }
+        .band-item {
+            padding:10px 14px;
+            border-left:1px solid rgba(255,255,255,.16);
+        }
+        .band-item:first-child { border-left:0; }
+        .band-item strong {
+            display:block;
+            font-size:clamp(30px,2.8vw,44px);
+            line-height:1;
+            letter-spacing:-.02em;
+        }
+        .band-item span {
+            display:block;
+            margin-top:8px;
+            font-size:15px;
+            color:rgba(255,255,255,.9);
+        }
+
+        .process-grid {
+            display:grid;
+            grid-template-columns:repeat(3,minmax(0,1fr));
+            gap:16px;
+        }
+        .step-card {
+            background:#fff;
+            border:1px solid #dce6fb;
+            border-radius:14px;
+            padding:22px;
+        }
+        .step-badge {
+            width:34px;
+            height:34px;
+            border-radius:50%;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            background:#175ed0;
+            color:#fff;
+            font-size:14px;
+            font-weight:800;
+        }
+        .step-card h3 {
+            margin:12px 0 0;
+            font-size:21px;
+            color:#11213f;
+        }
+        .step-card p {
+            margin:9px 0 0;
+            color:#5a6c88;
+            font-size:16px;
+        }
+
+        .about-cta {
+            margin-inline: calc(50% - 50vw);
+            padding:0 0 var(--section);
+        }
+        .about-cta .panel {
+            border-radius:18px;
+            padding:26px;
+            border:1px solid #d7e4ff;
+            background:linear-gradient(100deg,#1b69dd,#3057ca);
+            color:#fff;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:16px;
+            flex-wrap:wrap;
+        }
+        .about-cta h3 {
+            margin:0;
+            font-size:clamp(27px,3.2vw,42px);
+            line-height:1.12;
+        }
+        .about-cta p {
+            margin:8px 0 0;
+            color:rgba(255,255,255,.92);
+            font-size:16px;
+        }
+        .cta-actions {
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        }
+        .btn-white,
+        .btn-ghost {
+            min-height:46px;
+            padding:0 18px;
+            border-radius:999px;
+            border:1px solid transparent;
+            font-size:15px;
+            font-weight:700;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .btn-white {
+            background:#fff;
+            color:#19479d;
+        }
+        .btn-ghost {
+            border-color:rgba(255,255,255,.45);
+            color:#fff;
+            background:rgba(255,255,255,.08);
+        }
+
+        footer {
+            background:#0f1f45;
+            color:#dbe5ff;
+            padding:48px 0 24px;
+        }
+        .footer-grid {
+            display:grid;
+            grid-template-columns:repeat(4,minmax(0,1fr));
+            gap:18px;
+        }
+
+        @@media (max-width:1020px) {
+            .about-overview-grid,
+            .about-mini-grid,
+            .principles-grid,
+            .process-grid,
+            .footer-grid {
+                grid-template-columns:1fr 1fr;
+            }
+            .band-grid {
+                grid-template-columns:1fr 1fr;
+            }
+            .band-item {
+                border-left:0;
+                border-top:1px solid rgba(255,255,255,.16);
+            }
+            .band-item:nth-child(-n+2) { border-top:0; }
+        }
+
+        @@media (max-width:920px) {
+            .menu-toggle { display:inline-flex; align-items:center; justify-content:center; }
+            .site-header { flex-wrap:wrap; padding:14px 0; }
+            .main-nav,.header-actions { width:100%; display:none; }
+            .site-header.open .main-nav,.site-header.open .header-actions { display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+            .dropdown,.dropdown .menu-btn { width:100%; justify-content:space-between; }
+            .dropdown-menu { position:static; width:100%; box-shadow:none; margin-top:6px; }
+            .dropdown:hover .dropdown-menu,.dropdown:focus-within .dropdown-menu { display:none; }
+            .dropdown.open .dropdown-menu { display:block; }
+            .topbar-wrap { justify-content:center; }
+        }
+
+        @@media (max-width:700px) {
+            .container { width:calc(100% - 22px); }
+            .about-overview,
+            .about-principles,
+            .about-process { padding:74px 0; }
+            .about-overview-grid,
+            .about-mini-grid,
+            .principles-grid,
+            .process-grid,
+            .band-grid,
+            .footer-grid {
+                grid-template-columns:1fr;
+            }
+            .about-hero { padding:56px 0 44px; }
+            .about-hero p { font-size:16px; }
+            .about-copy p,
+            .section-head p { font-size:16px; }
+            .about-copy h2,
+            .section-head h2 { font-size:clamp(30px,8vw,40px); }
+            .about-mini-card h3,
+            .principle-card h3,
+            .step-card h3 { font-size:20px; }
+            .about-cta { padding-bottom:74px; }
+            .about-cta .panel { padding:20px; }
+            .about-cta h3 { font-size:clamp(26px,8vw,34px); }
+        }
+    </style>
+</head>
+<body>
+    @await Html.PartialAsync("_UnifiedHeader")
+
+    <main class="container">
+        <section class="about-hero">
+            <div class="container">
+                <span class="crumb"><i class="fa-solid fa-house"></i> <a href="/">Home</a> <i class="fa-solid fa-angle-right"></i> About</span>
+                <h1>Built for accountancy teams that cannot afford missed filing deadlines.</h1>
+                <p>Premium Deadline Management gives practices one trusted place to plan, monitor and action Companies House deadlines across all client portfolios.</p>
+            </div>
+        </section>
+
+        <section class="about-overview">
+            <div class="container">
+                <div class="about-overview-grid">
+                    <figure class="about-visual">
+                        <img src="~/skywave/about-us-workflow.png" alt="Premium Deadline Management team collaboration" />
+                    </figure>
+                    <div class="about-copy">
+                        <span class="eyebrow"><i class="fa-solid fa-circle-info"></i> About Us</span>
+                        <h2>Simple systems, reliable compliance and calmer workflows.</h2>
+                        <p>We saw firms manually tracking submission dates in spreadsheets and inboxes, then racing at the last minute to avoid penalties. Premium Deadline Management was built to remove that pressure.</p>
+                        <p>Our platform makes deadlines visible, keeps teams aligned and supports proactive planning for every company in your portfolio.</p>
+                    </div>
+                </div>
+                <div class="about-mini-grid">
+                    <article class="about-mini-card">
+                        <h3>Story</h3>
+                        <p>Created after seeing accountants lose time to fragmented and manual tracking.</p>
+                    </article>
+                    <article class="about-mini-card">
+                        <h3>Mission</h3>
+                        <p>Help practices stay compliant with less stress and better deadline visibility.</p>
+                    </article>
+                    <article class="about-mini-card">
+                        <h3>Vision</h3>
+                        <p>Become the trusted operating layer for filing compliance across modern firms.</p>
+                    </article>
+                    <article class="about-mini-card">
+                        <h3>Promise</h3>
+                        <p>Clear workflows, no overcomplication, dependable reminders and practical support.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-principles">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow"><i class="fa-solid fa-thumbs-up"></i> Why Teams Choose Us</span>
+                    <h2>Designed around real accountancy operations.</h2>
+                    <p>Everything is built for day-to-day practice needs: speed, clarity and dependable deadline control.</p>
+                </div>
+                <div class="principles-grid">
+                    <article class="principle-card">
+                        <span class="principle-icon"><i class="fa-solid fa-sliders"></i></span>
+                        <h3>No Overcomplication</h3>
+                        <p>Fast setup and a practical interface that teams can adopt without heavy onboarding overhead.</p>
+                    </article>
+                    <article class="principle-card">
+                        <span class="principle-icon"><i class="fa-solid fa-diagram-project"></i></span>
+                        <h3>Workflow Easier</h3>
+                        <p>Centralised client deadline management with clear statuses and quick filtering for action.</p>
+                    </article>
+                    <article class="principle-card">
+                        <span class="principle-icon"><i class="fa-solid fa-headset"></i></span>
+                        <h3>24/7 Available</h3>
+                        <p>Dedicated support available whenever your practice needs help during critical submission periods.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-band" aria-label="About statistics">
+            <div class="container">
+                <div class="band-grid">
+                    <div class="band-item">
+                        <strong>50+</strong>
+                        <span>Accounting Firms Onboarded</span>
+                    </div>
+                    <div class="band-item">
+                        <strong>20K+</strong>
+                        <span>Deadlines Tracked</span>
+                    </div>
+                    <div class="band-item">
+                        <strong>3+</strong>
+                        <span>Years Supporting Firms</span>
+                    </div>
+                    <div class="band-item">
+                        <strong>99.9%</strong>
+                        <span>Platform Reliability Target</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-process">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow"><i class="fa-solid fa-list-check"></i> How We Work</span>
+                    <h2>A predictable process for safer filing cycles.</h2>
+                </div>
+                <div class="process-grid">
+                    <article class="step-card">
+                        <span class="step-badge">1</span>
+                        <h3>Connect Your Practice</h3>
+                        <p>Import company records and create one clear view of all filing obligations.</p>
+                    </article>
+                    <article class="step-card">
+                        <span class="step-badge">2</span>
+                        <h3>Track and Prioritise</h3>
+                        <p>Use status views to surface overdue and upcoming deadlines at a glance.</p>
+                    </article>
+                    <article class="step-card">
+                        <span class="step-badge">3</span>
+                        <h3>Submit on Time</h3>
+                        <p>Act early, avoid penalties and keep clients confident with visible workflow progress.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-cta">
+            <div class="container">
+                <div class="panel">
+                    <div>
+                        <h3>Ready to simplify your filing deadline management?</h3>
+                        <p>Speak to our team and see how Premium Deadline Management fits your practice.</p>
+                    </div>
+                    <div class="cta-actions">
+                        <a class="btn-white" href="/Contact">Contact Us</a>
+                        <a class="btn-ghost" href="/Service">View Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="margin:0;font-size:18px;color:#fff;">Our Office</h3>
+                    <p style="margin:10px 0 0;"><i class="fa-solid fa-location-dot"></i> London, UK</p>
+                    <p style="margin:8px 0 0;"><i class="fa-solid fa-phone"></i> +0208 087 2245</p>
+                    <p style="margin:8px 0 0;"><i class="fa-solid fa-envelope"></i> info@premiumaccountants.co.uk</p>
+                </div>
+                <div>
+                    <h3 style="margin:0;font-size:18px;color:#fff;">Services</h3>
+                    <a href="/Service/ClientDeadlinePrioritisation" style="display:block;margin-top:10px;">Client Deadline Prioritisation</a>
+                    <a href="/Service/DeadlineStatusVisualization" style="display:block;margin-top:8px;">Deadline Status Visualisation</a>
+                    <a href="/Service/WorkflowEasier" style="display:block;margin-top:8px;">Workflow Easier</a>
+                    <a href="/Service/AutoDeadlineTracking" style="display:block;margin-top:8px;">Auto Deadline Tracking</a>
+                </div>
+                <div>
+                    <h3 style="margin:0;font-size:18px;color:#fff;">Quick Links</h3>
+                    <a href="/" style="display:block;margin-top:10px;">Home</a>
+                    <a href="/About" style="display:block;margin-top:8px;">About Us</a>
+                    <a href="/Contact" style="display:block;margin-top:8px;">Contact Us</a>
+                    <a href="/Service" style="display:block;margin-top:8px;">Our Services</a>
+                </div>
+                <div>
+                    <h3 style="margin:0;font-size:18px;color:#fff;">Newsletter</h3>
+                    <p style="margin:10px 0 0;">Stay updated with our latest news and updates.</p>
+                    <div style="display:flex;gap:8px;margin-top:10px;">
+                        <input type="email" placeholder="Your email" style="flex:1;min-width:0;border:1px solid #385496;background:#112658;color:#fff;border-radius:9px;padding:10px 12px;" />
+                        <button type="button" style="border:0;border-radius:9px;background:#1a6de6;color:#fff;padding:0 14px;font-weight:700;">Send</button>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:24px;padding-top:14px;border-top:1px solid rgba(171,191,240,.25);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:#a8b8e6;">
+                <span>&copy; 2026 Premium Deadline Management. All rights reserved.</span>
+                <span>Designed by <a href="https://mt-london.co.uk/" target="_blank" rel="noreferrer">Micro Tech London</a></span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+

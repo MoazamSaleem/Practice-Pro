@@ -1,0 +1,307 @@
+[
+  {
+    "ContainingType": "Practice_App.Controllers.AccountApi",
+    "Method": "register",
+    "RelativePath": "api/AccountApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Practice_App.Controllers.AccountApi\u002B_sign",
+        "IsRequired": true
+      },
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_App.Controllers.AccountApi",
+    "Method": "login",
+    "RelativePath": "api/AccountApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Practice_App.Controllers.AccountApi\u002B_signin",
+        "IsRequired": true
+      },
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_App.Controllers.AccountApi",
+    "Method": "forgot",
+    "RelativePath": "api/AccountApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Practice_App.Controllers.AccountApi\u002B_forgot",
+        "IsRequired": true
+      },
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_App.Controllers.AccountApi",
+    "Method": "reset",
+    "RelativePath": "api/AccountApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Practice_App.Controllers.AccountApi\u002B_reset",
+        "IsRequired": true
+      },
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.AdminApi",
+    "Method": "BlockUser",
+    "RelativePath": "api/AdminApi/BlockUser",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.AdminApi",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/AdminApi/GetAllUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.AdminApi",
+    "Method": "GetTotalUsers",
+    "RelativePath": "api/AdminApi/GetTotalUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.AdminApi",
+    "Method": "GetUserActivities",
+    "RelativePath": "api/AdminApi/GetUserActivities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.AdminApi",
+    "Method": "MakeAdmin",
+    "RelativePath": "api/AdminApi/MakeAdmin",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.AdminApi",
+    "Method": "RemoveAdmin",
+    "RelativePath": "api/AdminApi/RemoveAdmin",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.AdminApi",
+    "Method": "UnblockUser",
+    "RelativePath": "api/AdminApi/UnblockUser",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.ClientApi",
+    "Method": "SaveDa",
+    "RelativePath": "api/ClientApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Practice_Pro.Controllers.ClientApi\u002B_add",
+        "IsRequired": true
+      },
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.ClientApi",
+    "Method": "Vlist",
+    "RelativePath": "api/ClientApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.ClientApi",
+    "Method": "deleteList",
+    "RelativePath": "api/ClientApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.ClientApi",
+    "Method": "fetchCompanyData",
+    "RelativePath": "api/ClientApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.ClientApi",
+    "Method": "UpdateAllCompaniesSync",
+    "RelativePath": "api/ClientApi/{action}",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.HomeApi",
+    "Method": "SendDueEmails",
+    "RelativePath": "api/HomeApi/{action}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice_Pro.Controllers.HomeApi",
+    "Method": "GetCurrentUserEmail",
+    "RelativePath": "api/HomeApi/{action}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "action",
+        "Type": "",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

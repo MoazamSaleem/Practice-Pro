@@ -1,0 +1,1636 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Premium Deadline Management</title>
+    <meta name="description" content="Premium Deadline Management helps accountancy teams manage Companies House filing deadlines without missed submissions." />
+    <link rel="icon" href="~/finanza-1.0.0/img/logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Rethink+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+        :root { --bg:#f3f7ff; --card:#fff; --line:#d7e3ff; --text:#111b2f; --muted:#586788; --pri:#1769e6; --pri2:#114fb3; --soft:#eaf1ff; --radius:18px; --section-py:88px; --section-py-sm:74px; --heading-lg:clamp(30px,4vw,48px); --text-lg:17px; }
+        * { box-sizing:border-box; }
+        html,body { margin:0; padding:0; }
+        body { font-family:"Manrope",sans-serif; color:var(--text); background:radial-gradient(circle at 15% -10%,#d9e8ff 0%,#edf3ff 40%,#f8faff 100%); line-height:1.6; }
+        a { color:inherit; text-decoration:none; }
+        .container { width:min(1180px, calc(100% - 36px)); margin:0 auto; }
+        .topbar { background:linear-gradient(90deg,#1675ea,#0f62d0); color:#fff; }
+        .topbar-wrap { min-height:50px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:8px 0; }
+        .topbar-group { display:flex; gap:16px; align-items:center; flex-wrap:wrap; font-size:14px; }
+        .topbar-group a, .topbar-group span { display:inline-flex; align-items:center; gap:8px; }
+        .socials { display:inline-flex; gap:8px; }
+        .socials a { width:30px; height:30px; border:1px solid rgba(255,255,255,.45); border-radius:999px; display:inline-flex; align-items:center; justify-content:center; }
+        .header-shell { position:sticky; top:0; z-index:100; background:rgba(243,247,255,.93); backdrop-filter:blur(8px); border-bottom:1px solid #d6e1fa; }
+        .site-header { min-height:84px; display:flex; align-items:center; gap:16px; }
+        .brand { display:inline-flex; align-items:center; gap:10px; }
+        .brand img { height:50px; border-radius:8px; }
+        .brand b { font-family:"Space Grotesk",sans-serif; font-size:20px; letter-spacing:.01em; }
+        .brand small { color:var(--muted); font-size:11px; letter-spacing:.11em; text-transform:uppercase; display:block; line-height:1.2; }
+        .menu-toggle { display:none; margin-left:auto; width:42px; height:42px; border:1px solid var(--line); border-radius:11px; background:#fff; }
+        .main-nav { margin-left:auto; display:inline-flex; align-items:center; gap:8px; }
+        .main-nav > a, .menu-btn { border:0; background:transparent; font:inherit; font-weight:700; color:#293759; padding:9px 12px; border-radius:10px; display:inline-flex; align-items:center; gap:8px; cursor:pointer; }
+        .main-nav > a:hover, .menu-btn:hover { background:#e7f0ff; }
+        .dropdown { position:relative; }
+        .dropdown-menu { list-style:none; margin:0; padding:10px; min-width:275px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 14px 34px rgba(17,36,82,.16); position:absolute; left:0; top:calc(100% + 8px); display:none; }
+        .dropdown-menu li + li { margin-top:4px; }
+        .dropdown-menu a { display:block; padding:8px 10px; border-radius:8px; color:#2f4169; font-size:14px; font-weight:600; }
+        .dropdown-menu a:hover { background:#edf3ff; }
+        .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu, .dropdown.open .dropdown-menu { display:block; }
+        .header-actions { display:inline-flex; align-items:center; gap:10px; }
+        .logout-form { margin:0; }
+        .btn { border:0; min-height:41px; padding:0 16px; border-radius:999px; font:inherit; font-weight:700; display:inline-flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; }
+        .btn-primary { color:#fff; background:linear-gradient(90deg,var(--pri),#2080ff); box-shadow:0 10px 20px rgba(23,105,230,.27); }
+        .btn-primary:hover { background:linear-gradient(90deg,var(--pri2),#0f66db); }
+        .btn-soft { color:#194ca8; background:var(--soft); }
+        .hero { padding:0 0 46px; }
+        .sw-hero {
+            margin-inline: calc(50% - 50vw);
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f7fa;
+            background-image: linear-gradient(#ffefed 2px, transparent 2px), linear-gradient(to right, #ffefed 2px, transparent 2px);
+            background-size: 85px 85px;
+            font-family: "Rethink Sans", sans-serif;
+        }
+
+        .sw-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 33%;
+            background: #1051b983;
+        }
+
+        .sw-hero-inner {
+            padding: 70px 0 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sw-hero-grid {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .sw-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #d8dfe8;
+            background: #f8fafc;
+            border-radius: 999px;
+            padding: 9px 16px 10px 10px;
+            color: #1052B9;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .sw-badge .new {
+            background: #1052B9;
+            color: #fff;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .sw-title {
+            margin: 32px 0 0;
+            font-size: clamp(46px, 5vw, 74px);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #1f2631;
+            max-width: 640px;
+        }
+
+        .sw-desc {
+            margin: 24px 0 0;
+            max-width: 660px;
+            color: #4f617b;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .sw-points {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 24px;
+            max-width: 680px;
+        }
+
+        .sw-point {
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #111b2f;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .sw-point i {
+            color: #13ce67;
+            font-size: 18px;
+        }
+
+        .sw-users {
+            margin-top: 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .sw-avatars {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .sw-avatars li + li {
+            margin-left: -12px;
+        }
+
+        .sw-avatars img {
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+        }
+
+        .sw-user-count {
+            color: #172133;
+            font-weight: 700;
+            line-height: 1.06;
+        }
+
+        .sw-user-count b {
+            display: block;
+            font-size: 32px;
+        }
+
+        .sw-user-count span {
+            display: block;
+            font-size: 18px;
+            margin-top: 6px;
+        }
+
+        .sw-actions {
+            margin-top: 34px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sw-btn-primary,
+        .sw-btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 64px;
+            border-radius: 999px;
+            padding: 0 34px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1;
+            transition: all 0.2s ease;
+        }
+
+        .sw-btn-primary {
+            background: #1052B9;
+            color: #fff;
+            border: 1px solid #1052B9;
+        }
+
+        .sw-btn-primary:hover {
+            background: #ec7c5a;
+            border-color: #ec7c5a;
+        }
+
+        .sw-btn-outline {
+            color: #1052B9;
+            border: 1px solid #1052B9;
+            background: transparent;
+        }
+
+        .sw-btn-outline:hover {
+            background: #1052B9;
+            color: #fff;
+        }
+
+        .sw-image-wrap {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .sw-image {
+            width: min(980px, 100%);
+            border-radius: 40px;
+            display: block;
+        }
+
+        .sw-about {
+            margin-inline: calc(50% - 50vw);
+            background: #f5f7fa;
+            padding: var(--section-py) 0;
+            font-family: "Rethink Sans", sans-serif;
+        }
+
+        .sw-about-head {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .sw-about-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .sw-about-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: #1052B9;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        .sw-about-dots {
+            color: #1052B9;
+            font-size: 28px;
+            letter-spacing: 0.04em;
+            line-height: 1;
+        }
+
+        .sw-about-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 38px;
+            border: 1px solid #d7dde6;
+            background: #f8fafc;
+            color: #1052B9;
+            border-radius: 8px;
+            padding: 0 16px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .sw-about-head h2 {
+            margin: 0;
+            color: #182235;
+            font-size: clamp(30px, 3.4vw, 42px);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .sw-about-grid {
+            margin-top: 52px;
+            display: grid;
+            grid-template-columns: 7fr 5fr;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .sw-about-art img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .sw-about-content h3 {
+            margin: 0;
+            color: #182235;
+            font-size: clamp(24px, 2.5vw, 30px);
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .sw-about-content p {
+            margin: 20px 0 0;
+            color: #4f617b;
+            font-size: var(--text-lg);
+            line-height: 1.55;
+        }
+
+        .sw-about-btn {
+            margin-top: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 64px;
+            border-radius: 999px;
+            padding: 0 32px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            background: #1052B9;
+            border: 1px solid #1052B9;
+        }
+
+        .sw-about-btn:hover {
+            background: #ec7c5a;
+            border-color: #ec7c5a;
+        }
+
+        .sw-about-stats {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .sw-about-stat strong {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #15223a;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .sw-about-stat p {
+            margin: 10px 0 0;
+            color: #5c6d8b;
+            font-size: 16px;
+            line-height: 1.35;
+        }
+
+        .sw-about-stat .fa-star {
+            color: #f7bc43;
+            font-size: 18px;
+        }
+
+        .sw-about-pills {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .sw-about-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 0 18px 0 10px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1;
+            border: 1px solid transparent;
+        }
+
+        .sw-about-pill.is-success {
+            background: #dff7e9;
+            color: #23784d;
+        }
+
+        .sw-about-pill.is-neutral {
+            background: #dceaf0;
+            color: #274f6a;
+        }
+
+        .sw-about-pill.is-primary {
+            background: #dde6fb;
+            color: #4863a6;
+        }
+
+        .sw-about-pill .pill-icon,
+        .sw-about-pill .pill-mini {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.55);
+            flex-shrink: 0;
+        }
+
+        .sw-about-pill .pill-icon {
+            font-size: 13px;
+        }
+
+        .sw-about-pill .pill-mini {
+            padding: 0 10px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .sw-features {
+            margin-inline: calc(20% - 50vw);
+            background: #f5f7fa;
+            padding: var(--section-py) 10;
+            font-family: "Rethink Sans", sans-serif;
+        }
+
+        .sw-features-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .sw-features-title {
+            max-width: 760px;
+        }
+
+        .sw-features-title h2 {
+            margin: 0;
+            color: #182235;
+            font-size: var(--heading-lg);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .sw-features-title p {
+            margin: 16px 0 0;
+            color: #4f617b;
+            font-size: var(--text-lg);
+            line-height: 1.52;
+            max-width: 780px;
+        }
+
+        .sw-features-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 64px;
+            border-radius: 999px;
+            padding: 0 34px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            background: #1052B9;
+            border: 1px solid #1052B9;
+            margin-top: 48px;
+        }
+
+        .sw-features-btn:hover {
+            background: #ec7c5a;
+            border-color: #ec7c5a;
+        }
+
+        .sw-features-grid {
+            margin-top: 36px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .sw-feature-card {
+            background: #fff;
+            border: 1px solid #edf2f7;
+            border-radius: 10px;
+            padding: 20px 20px 18px;
+        }
+
+        .sw-feature-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .sw-feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: rgba(245, 137, 103, 0.12);
+            color: #1052B9;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .sw-feature-card h3 {
+            margin: 0;
+            color: #182235;
+            font-size: 20px;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .sw-feature-card p {
+            margin: 0;
+            color: #4f617b;
+            font-size: 17px;
+            line-height: 1.52;
+        }
+
+        .sw-feature-link {
+            margin-top: 16px;
+            display: inline-block;
+            color: #1052B9;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .sw-feature-link:hover {
+            color: #ec7c5a;
+        }
+
+        .sw-services {
+            margin-inline: calc(50% - 50vw);
+            background: #f5f7fa;
+            padding: var(--section-py) 0;
+            font-family: "Rethink Sans", sans-serif;
+        }
+
+        .sw-services-head {
+            text-align: center;
+            max-width: 860px;
+            margin: 0 auto 34px;
+        }
+
+        .sw-services-head h2 {
+            margin: 0;
+            color: #182235;
+            font-size: var(--heading-lg);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .sw-services-head p {
+            margin: 16px auto 0;
+            color: #4f617b;
+            font-size: var(--text-lg);
+            line-height: 1.5;
+            max-width: 780px;
+        }
+
+        .sw-services-grid {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .sw-service-card {
+            text-align: center;
+            border-radius: 10px;
+            padding: 26px 22px 20px;
+            background: transparent;
+        }
+
+        .sw-service-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #1052b9;
+            font-size: 38px;
+            line-height: 1;
+        }
+
+        .sw-service-card h3 {
+            margin: 14px 0 0;
+            color: #182235;
+            font-size: 18px;
+            line-height: 1.35;
+            font-weight: 700;
+        }
+
+        .sw-service-card p {
+            margin: 12px 0 0;
+            color: #4f617b;
+            font-size: 17px;
+            line-height: 1.52;
+        }
+
+        .sw-service-card a {
+            margin-top: 16px;
+            display: inline-block;
+            color: #1052b9;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .sw-service-card a:hover {
+            color: #db6f4f;
+        }
+
+        .sw-service-card.active {
+            background-color: #1052b9;
+            background-image: url('/skywave/bg-home.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .sw-service-card.active .sw-service-icon {
+            color: #fff;
+        }
+
+        .sw-service-card.active h3 {
+            color: #fff;
+        }
+
+        .sw-service-card.active p {
+            color: rgba(255, 255, 255, 0.84);
+        }
+
+        .sw-service-card.active a {
+            color: #fff;
+        }
+
+        .sw-counter-band {
+            margin-inline: calc(50% - 50vw);
+            background-color: #0e2053;
+            background-image: linear-gradient(rgba(7, 19, 52, 0.72), rgba(7, 19, 52, 0.72)), url('/skywave/bg-home.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 34px 0;
+            font-family: "Rethink Sans", sans-serif;
+        }
+
+        .sw-counter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0;
+        }
+
+        .sw-counter-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 12px 24px;
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sw-counter-item:first-child {
+            border-left: 0;
+        }
+
+        .sw-counter-item strong {
+            color: #fff;
+            font-size: clamp(34px, 3vw, 48px);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .sw-counter-item p {
+            margin: 0;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.35;
+        }
+
+        .sw-testimonial {
+            margin-inline: calc(50% - 50vw);
+            background: #f5f7fa;
+            padding: var(--section-py) 0;
+            font-family: "Rethink Sans", sans-serif;
+        }
+
+        .sw-testimonial-grid {
+            display: grid;
+            grid-template-columns: 5fr 6fr;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .sw-testimonial .sw-about-icon {
+            background: #1052b9;
+        }
+
+        .sw-testimonial .sw-about-dots {
+            color: #1052b9;
+        }
+
+        .sw-testimonial .sw-about-badge {
+            color: #1052b9;
+        }
+
+        .sw-testi-title {
+            max-width: 540px;
+        }
+
+        .sw-testi-title h2 {
+            margin: 0;
+            color: #172335;
+            font-size: var(--heading-lg);
+            line-height: 1.22;
+            letter-spacing: -0.02em;
+        }
+
+        .sw-testi-title p {
+            margin: 14px 0 0;
+            color: #4f617b;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .sw-testi-avatars {
+            margin: 26px 0 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sw-testi-avatars li {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: 2px solid #f5f7fa;
+            overflow: hidden;
+        }
+
+        .sw-testi-avatars img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sw-testi-rating {
+            margin: 26px 0 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #172335;
+            font-weight: 700;
+        }
+
+        .sw-testi-rating i {
+            color: #f5b83b;
+            font-size: 34px;
+            line-height: 1;
+        }
+
+        .sw-testi-rating strong {
+            color: #172335;
+            font-size: 34px;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .sw-testi-rating span {
+            color: #4f617b;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .sw-testi-card-wrap {
+            padding: 18px;
+            border-radius: 10px;
+            background-color: #1052b9;
+            background-image: url('/skywave/bg-home.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .sw-testi-card {
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 8px;
+            padding: 30px 28px 24px;
+        }
+
+        .sw-testi-card .company-logo {
+            width: 145px;
+            height: auto;
+            display: block;
+        }
+
+        .sw-testi-quote {
+            margin: 24px 0 0;
+            color: #344a67;
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        .sw-testi-user {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sw-testi-user img {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .sw-testi-user b {
+            display: block;
+            color: #1052b9;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        .sw-testi-user p {
+            margin: 6px 0 0;
+            color: #15223a;
+            font-size: 17px;
+            line-height: 1.32;
+        }
+
+        .sw-contact {
+            margin-inline: calc(20% - 50vw);
+            background: #f5f7fa;
+            padding: var(--section-py) 10;
+            font-family: "Rethink Sans", sans-serif;
+        }
+
+        .sw-contact .sw-about-icon {
+            background: #1052b9;
+        }
+
+        .sw-contact .sw-about-dots {
+            color: #15223a;
+        }
+
+        .sw-contact .sw-about-badge {
+            color: #1052b9;
+        }
+
+        .sw-contact-head {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .sw-contact-head h2 {
+            margin: 0;
+            color: #15223a;
+            font-size: var(--heading-lg);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .sw-contact-head p {
+            margin: 14px auto 0;
+            max-width: 680px;
+            color: #4f617b;
+            font-size: var(--text-lg);
+            line-height: 1.5;
+        }
+
+        .sw-contact-grid {
+            margin-top: 44px;
+            display: grid;
+            grid-template-columns: 4fr 8fr;
+            gap: 26px;
+            align-items: start;
+        }
+
+        .sw-contact-cards {
+            display: grid;
+            gap: 16px;
+        }
+
+        .sw-contact-card {
+            border-radius: 10px;
+            border: 1px solid #edf2f7;
+            background: #fff;
+            padding: 20px 18px 18px;
+        }
+
+        .sw-contact-card.primary {
+            border: 0;
+            background-color: #1052b9;
+            background-image: url('/skywave/bg-home.png');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .sw-contact-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sw-contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #1052b9;
+            background: #fff;
+            color: #1052b9;
+            font-size: 21px;
+            flex-shrink: 0;
+        }
+
+        .sw-contact-card .kicker {
+            margin: 0;
+            color: #4f617b;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .sw-contact-card.primary .kicker {
+            color: #fff;
+        }
+
+        .sw-contact-card .value {
+            margin: 18px 0 24px;
+            color: #15223a;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            word-break: break-word;
+        }
+
+        .sw-contact-card .value.value-lg {
+            font-size: 30px;
+        }
+
+        .sw-contact-card.primary .value {
+            color: #fff;
+        }
+
+        .sw-contact-btn {
+            min-height: 50px;
+            width: 100%;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 18px;
+            font-size: 16px;
+            font-weight: 700;
+            border: 1px solid #1052b9;
+            transition: all 0.2s ease;
+        }
+
+        .sw-contact-btn-light {
+            background: #fff;
+            color: #1052b9;
+            border-color: #fff;
+        }
+
+        .sw-contact-btn-light:hover {
+            background: #fee4dc;
+            color: #d86f4f;
+        }
+
+        .sw-contact-btn-primary {
+            background: #1052b9;
+            color: #fff;
+            border-color: #1052b9;
+        }
+
+        .sw-contact-btn-primary:hover {
+            background: #0f64dac2;
+            border-color: #0f64dac2;
+        }
+
+        .sw-contact-form-wrap h3 {
+            margin: 4px 0 16px;
+            color: #15223a;
+            font-size: 28px;
+            line-height: 1.2;
+        }
+
+        .sw-contact-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px 14px;
+        }
+
+        .sw-contact-form .full {
+            grid-column: 1 / -1;
+        }
+
+        .sw-contact-input,
+        .sw-contact-textarea {
+            width: 100%;
+            border: 1px solid #cfd7e3;
+            border-radius: 10px;
+            background: #f5f7fa;
+            color: #1b2943;
+            font: inherit;
+            font-size: 16px;
+            padding: 0 18px;
+            outline: none;
+        }
+
+        .sw-contact-input {
+            min-height: 52px;
+        }
+
+        .sw-contact-textarea {
+            min-height: 206px;
+            padding: 14px 18px;
+            resize: vertical;
+        }
+
+        .sw-contact-input:focus,
+        .sw-contact-textarea:focus {
+            border-color: #1052b9;
+            box-shadow: 0 0 0 3px rgba(245, 139, 103, 0.15);
+        }
+
+        .sw-contact-submit {
+            min-height: 58px;
+            border-radius: 999px;
+            padding: 0 28px;
+            border: 1px solid #1052b9;
+            background: #1052b9;
+            color: #fff;
+            font: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .sw-contact-submit:hover {
+            background: #0f64dac2;
+            border-color: #0f64dac2;
+        }
+
+        .section { padding:84px 0; }
+        .section.sw-about { padding: var(--section-py) 0; }
+        .head { text-align:center; max-width:760px; margin:0 auto 26px; }
+        .head .label { display:inline-flex; align-items:center; gap:8px; color:#1a5cc8; font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:800; }
+        .head h2 { margin:10px 0 0; font-size:clamp(28px,4vw,42px); line-height:1.13; }
+        .head p { margin:14px 0 0; color:#556487; }
+        .grid-3, .grid-2 { display:grid; gap:16px; }
+        .grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+        .grid-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+        .footer-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
+        .card { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:0 12px 28px rgba(19,38,84,.06); }
+        .card h3 { margin:10px 0 0; font-size:22px; line-height:1.2; }
+        .card p { margin:10px 0 0; color:#5c6b8c; }
+        .icon-pill { width:44px; height:44px; border-radius:12px; background:#ebf3ff; color:#2a60cb; display:inline-flex; align-items:center; justify-content:center; }
+        .read { margin-top:14px; display:inline-flex; align-items:center; gap:8px; color:#1f5cc0; font-size:14px; font-weight:800; }
+        .list { margin:14px 0 0; padding:0; list-style:none; display:grid; gap:8px; }
+        .list li { display:flex; align-items:flex-start; gap:10px; color:#3a4b70; }
+        .list i { color:#1972eb; margin-top:2px; }
+        @@media (max-width:1120px) {
+            .grid-3,.grid-2,.footer-grid { grid-template-columns:1fr 1fr; }
+            .sw-hero-inner { padding: 132px 0 96px; }
+            .sw-hero-grid { grid-template-columns: 1fr; gap: 24px; }
+            .sw-title { max-width: none; font-size: clamp(40px, 8vw, 62px); }
+            .sw-desc { max-width: none; }
+            .sw-image-wrap { justify-content: center; }
+            .sw-image { max-width: 760px; }
+            .sw-about-grid { grid-template-columns: 1fr; gap: 26px; }
+            .sw-about-head h2 { font-size: clamp(28px, 4.5vw, 38px); }
+            .sw-features-grid { grid-template-columns: 1fr; }
+            .sw-services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .sw-counter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .sw-counter-item { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+            .sw-counter-item:nth-child(-n+2) { border-top: 0; }
+            .sw-testimonial-grid { grid-template-columns: 1fr; gap: 26px; }
+            .sw-testi-title { max-width: none; }
+            .sw-contact-grid { grid-template-columns: 1fr; gap: 22px; }
+        }
+        @@media (max-width:920px) {
+            .menu-toggle { display:inline-flex; align-items:center; justify-content:center; }
+            .site-header { flex-wrap:wrap; padding:14px 0; }
+            .main-nav,.header-actions { width:100%; display:none; }
+            .site-header.open .main-nav,.site-header.open .header-actions { display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+            .dropdown,.dropdown .menu-btn { width:100%; justify-content:space-between; }
+            .dropdown-menu { position:static; width:100%; box-shadow:none; margin-top:6px; }
+            .dropdown:hover .dropdown-menu,.dropdown:focus-within .dropdown-menu { display:none; }
+            .dropdown.open .dropdown-menu { display:block; }
+            .topbar-wrap { justify-content:center; }
+        }
+        @@media (max-width:680px) {
+            .container { width:calc(100% - 22px); }
+            .grid-3,.grid-2,.footer-grid { grid-template-columns:1fr; }
+            .sw-hero { background-size: 58px 58px; }
+            .sw-hero::before { width: 100%; opacity: 0.08; }
+            .sw-hero-inner { padding: 104px 0 72px; }
+            .sw-badge { font-size: 16px; }
+            .sw-badge .new { font-size: 13px; }
+            .sw-title { font-size: clamp(34px, 9.4vw, 50px); }
+            .sw-desc { font-size: 16px; }
+            .sw-points { grid-template-columns: 1fr; }
+            .sw-point { font-size: 16px; }
+            .sw-user-count b { font-size: 26px; }
+            .sw-user-count span { font-size: 16px; }
+            .sw-actions { flex-direction: column; align-items: stretch; }
+            .sw-btn-primary,.sw-btn-outline { min-height: 56px; font-size: 16px; width: 100%; }
+            .section { padding: 70px 0; }
+            .section.sw-about { padding: var(--section-py-sm) 0; }
+            .sw-about-tag { margin-bottom: 14px; }
+            .sw-about-badge { font-size: 16px; min-height: 34px; padding: 0 13px; }
+            .sw-about-icon { width: 34px; height: 34px; font-size: 15px; }
+            .sw-about-dots { font-size: 20px; }
+            .sw-about-grid { margin-top: 34px; }
+            .sw-about-content h3 { font-size: clamp(22px, 6vw, 28px); }
+            .sw-about-content p { font-size: 16px; }
+            .sw-about-btn { min-height: 56px; width: 100%; max-width: 230px; font-size: 16px; }
+            .sw-about-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+            .sw-about-stat strong { font-size: 18px; }
+            .sw-about-stat p { font-size: 15px; }
+            .sw-features { padding: var(--section-py-sm) 0; }
+            .sw-features-title h2 { font-size: clamp(30px, 8vw, 40px); }
+            .sw-features-title p { font-size: 16px; }
+            .sw-features-btn { min-height: 56px; margin-top: 10px; width: 100%; max-width: 260px; font-size: 16px; }
+            .sw-feature-card p { font-size: 16px; }
+            .sw-feature-link { font-size: 16px; }
+            .sw-services { padding: var(--section-py-sm) 0; }
+            .sw-services-head h2 { font-size: clamp(30px, 8vw, 40px); }
+            .sw-services-head p { font-size: 16px; }
+            .sw-services-grid { grid-template-columns: 1fr; gap: 12px; }
+            .sw-service-card p { font-size: 16px; }
+            .sw-service-card a { font-size: 16px; }
+            .sw-counter-band { padding: 30px 0; }
+            .sw-counter-grid { grid-template-columns: 1fr; }
+            .sw-counter-item { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 14px 6px; }
+            .sw-counter-item:first-child { border-top: 0; }
+            .sw-counter-item strong { font-size: 36px; }
+            .sw-counter-item p { font-size: 15px; }
+            .sw-testimonial { padding: var(--section-py-sm) 0; }
+            .sw-testi-title h2 { font-size: clamp(30px, 8vw, 40px); }
+            .sw-testi-title p { font-size: 16px; }
+            .sw-testi-avatars li { width: 50px; height: 50px; }
+            .sw-testi-rating i { font-size: 30px; }
+            .sw-testi-rating strong { font-size: 32px; }
+            .sw-testi-rating span { font-size: 16px; }
+            .sw-testi-card-wrap { padding: 12px; }
+            .sw-testi-card { padding: 20px 18px 16px; }
+            .sw-testi-card .company-logo { width: 120px; }
+            .sw-testi-quote { margin-top: 18px; font-size: 17px; }
+            .sw-testi-user img { width: 54px; height: 54px; }
+            .sw-testi-user b { font-size: 18px; }
+            .sw-testi-user p { font-size: 15px; }
+            .sw-contact { padding: var(--section-py-sm) 0; }
+            .sw-contact-head h2 { font-size: clamp(30px, 8vw, 40px); }
+            .sw-contact-head p { font-size: 16px; }
+            .sw-contact-grid { margin-top: 34px; }
+            .sw-contact-card { padding: 16px 14px 14px; }
+            .sw-contact-icon { width: 40px; height: 40px; font-size: 18px; }
+            .sw-contact-card .kicker { font-size: 16px; }
+            .sw-contact-card .value { font-size: 20px; margin: 14px 0 18px; }
+            .sw-contact-card .value.value-lg { font-size: 24px; }
+            .sw-contact-btn { min-height: 46px; font-size: 15px; }
+            .sw-contact-form-wrap h3 { font-size: 24px; margin-bottom: 12px; }
+            .sw-contact-form { grid-template-columns: 1fr; gap: 10px; }
+            .sw-contact-input { min-height: 48px; }
+            .sw-contact-textarea { min-height: 170px; }
+            .sw-contact-submit { min-height: 52px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    @await Html.PartialAsync("_UnifiedHeader")
+
+    <main class="container">
+        <section class="hero sw-hero" id="home">
+            <div class="container sw-hero-inner">
+                <div class="sw-hero-grid">
+                    <div class="sw-copy">
+                        <a href="/Service" class="sw-badge"><span class="new">Cloud</span> Deadline Portal <i class="fa-solid fa-arrow-right"></i></a>
+                        <h1 class="sw-title">Never Miss a<br />Deadline</h1>
+                        <p class="sw-desc">Premium Deadline Management is a cloud portal that works as a Companies House filing deadline manager, allowing accountants to manage their clients' Companies House filing deadlines.</p>
+
+                        <div class="sw-points">
+                            <p class="sw-point"><i class="fa-solid fa-circle-check"></i><span>No Overcomplication</span></p>
+                            <p class="sw-point"><i class="fa-solid fa-circle-check"></i><span>Workflow Easier</span></p>
+                        </div>
+
+                        <div class="sw-users">
+                            <ul class="sw-avatars">
+                                <li><img src="~/skywave/avatar-7.jpg" alt="User avatar 1" /></li>
+                                <li><img src="~/skywave/avatar-6.jpg" alt="User avatar 2" /></li>
+                                <li><img src="~/skywave/avatar-8.jpg" alt="User avatar 3" /></li>
+                                <li><img src="~/skywave/avatar-9.jpg" alt="User avatar 4" /></li>
+                            </ul>
+                            <div class="sw-user-count">
+                                <b>24/7</b>
+                                <span>Available</span>
+                            </div>
+                        </div>
+
+                        <div class="sw-actions">
+                            <a class="sw-btn-primary" href="/Account/Signup">Explore Now</a>
+                            <a class="sw-btn-outline" href="/Contact">Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="sw-image-wrap">
+                        <img class="sw-image" src="~/skywave/pmdm-banner2.png" alt="Agency hero illustration" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section sw-about" id="about">
+            <div class="container">
+                <div class="sw-about-head">
+                    <p class="sw-about-tag">
+                        <span class="sw-about-icon"><i class="fa-solid fa-circle-info"></i></span>
+                        <span class="sw-about-dots">...</span>
+                        <span class="sw-about-badge">About Us</span>
+                    </p>
+                    <h2>Premium Deadline Management is a cloud portal for Companies House filing deadline management.</h2>
+                </div>
+
+                <div class="sw-about-grid">
+                    <div class="sw-about-art">
+                        <img src="~/skywave/about.png" alt="Skywave network collaboration illustration" />
+                    </div>
+
+                    <div class="sw-about-content">
+                        <h3>About Us</h3>
+                        <p>We saw accountants struggling with tracking deadlines for hundreds of clients, leading to missed filings and penalties. Premium Deadline Management was created to solve this problem, providing a seamless and reliable way to keep accountants in control.</p>
+
+                        <a href="/About" class="sw-about-btn">Read More</a>
+
+                        <div class="sw-about-pills">
+                            <span class="sw-about-pill is-success">
+                                <span class="pill-icon"><i class="fa-solid fa-check"></i></span>
+                                GDPR Compliant
+                            </span>
+                            <span class="sw-about-pill is-neutral">
+                                <span class="pill-mini">GB</span>
+                                UK Based
+                            </span>
+                            <span class="sw-about-pill is-primary">
+                                <span class="pill-icon"><i class="fa-solid fa-building-columns"></i></span>
+                                Companies House Integrated
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sw-features" id="features">
+            <div class="container">
+                <div class="sw-features-top">
+                    <div class="sw-features-title">
+                        <p class="sw-about-tag">
+                            <span class="sw-about-icon"><i class="fa-solid fa-key"></i></span>
+                            <span class="sw-about-dots">...</span>
+                            <span class="sw-about-badge">Portal Benefits</span>
+                        </p>
+                        <h2>Built to Keep Filing Work Clear</h2>
+                        <p>Premium Deadline Management removes unnecessary complexity and gives accountants a clearer, more manageable way to stay on top of Companies House obligations.</p>
+                    </div>
+                    @* <a class="sw-features-btn" href="/Service">View 12 Features</a> *@
+                </div>
+
+                <div class="sw-features-grid">
+                    <article class="sw-feature-card">
+                        <div class="sw-feature-head">
+                            <span class="sw-feature-icon"><i class="fa-solid fa-table-cells-large"></i></span>
+                            <h3>No Overcomplication</h3>
+                        </div>
+                        <p>A straightforward cloud portal that keeps filing work visible, practical, and easy to manage.</p>
+                       
+                    </article>
+
+                    <article class="sw-feature-card">
+                        <div class="sw-feature-head">
+                            <span class="sw-feature-icon"><i class="fa-solid fa-code-branch"></i></span>
+                            <h3>Workflow Easier</h3>
+                        </div>
+                        <p>Track deadlines for all of your clients in one place and plan ahead with a smoother day-to-day workflow.</p>
+                        
+                    </article>
+
+                    <article class="sw-feature-card">
+                        <div class="sw-feature-head">
+                            <span class="sw-feature-icon"><i class="fa-solid fa-pen-ruler"></i></span>
+                            <h3>24/7 Available</h3>
+                        </div>
+                        <p>Access your portal whenever you need it, so deadline visibility is always available to your practice.</p>
+                    </article>
+
+                    <article class="sw-feature-card">
+                        <div class="sw-feature-head">
+                            <span class="sw-feature-icon"><i class="fa-regular fa-clock"></i></span>
+                            <h3>Deadline Status Visualisation</h3>
+                        </div>
+                        <p>Displays overdue and upcoming deadlines in a clear bar chart format, allowing users to quickly assess due tasks and manage priorities efficiently.</p>
+                        
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="sw-services" id="sky-services">
+            <div class="container">
+                <div class="sw-services-head">
+                    <p class="sw-about-tag">
+                        <span class="sw-about-icon"><i class="fa-solid fa-laptop-code"></i></span>
+                        <span class="sw-about-dots">...</span>
+                        <span class="sw-about-badge">Our Services</span>
+                    </p>
+                    <h2>Awesome Financial Services For Business</h2>
+                    <p>Use clear deadline visualisation, easier workflows, and automatic tracking to stay ahead of Companies House obligations.</p>
+                </div>
+
+                <div class="sw-services-grid">
+                    <article class="sw-service-card">
+                        <span class="sw-service-icon"><i class="fa-solid fa-display"></i></span>
+                        <h3>Deadline Status Visualisation</h3>
+                        <p>Displays overdue and upcoming deadlines in a clear bar chart format, with visual reports, graphs, and customisable filters to help you manage priorities efficiently.</p>
+                        @* <a href="/Service">View More</a> *@
+                    </article>
+
+                    <article class="sw-service-card active">
+                        <span class="sw-service-icon"><i class="fa-solid fa-code-branch"></i></span>
+                        <h3>Workflow Easier</h3>
+                        <p>Premium Deadline Management is here to help. We created a Companies House deadline tracker to overcome the hassle accountancy practices normally need to bear.</p>
+                        @* <a href="/Service">View More</a> *@
+                    </article>
+
+                    <article class="sw-service-card">
+                        <span class="sw-service-icon"><i class="fa-solid fa-handshake"></i></span>
+                        <h3>Auto Deadline Tracking</h3>
+                        <p>Automatically updates due dates for accounts submission and CS01 confirmation statements, helping you stay on top of your deadlines.</p>
+                        @* <a href="/Service">View More</a> *@
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="sw-counter-band" id="stats">
+            <div class="container">
+                <div class="sw-counter-grid">
+                    <div class="sw-counter-item">
+                        <strong>20+</strong>
+                        <p>Accounting Firms Onboarded</p>
+                    </div>
+                    <div class="sw-counter-item">
+                        <strong>20000+</strong>
+                        <p>Filing Deadlines Tracked</p>
+                    </div>
+                    @* <div class="sw-counter-item">
+                        <strong>Â£10M+</strong>
+                        <p>Penalties Avoided for Clients</p>
+                    </div> *@
+                    <div class="sw-counter-item">
+                        <strong>3+</strong>
+                        <p>Years Of Best Experience</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+  <section class="section" id="why">
+            <div class="head">
+                <span class="label"><i class="fa-solid fa-thumbs-up"></i> Why Choose Us</span>
+                <h2>A Few Reasons People Choose Us</h2>
+                <p>With Premium Deadline Management, you can track deadlines for all of your clients in one place so you do not miss any submissions, which can lead to unhappy customers. Our user-friendly interface allows you to view your upcoming obligations and helps you plan ahead.</p>
+            </div>
+            <div class="grid-3">
+                <article class="card">
+                    <span class="icon-pill"><i class="fa-solid fa-calendar-check"></i></span>
+                    <h3>Effortless Tracking</h3>
+                    <p>Easily track Companies House filing deadlines without the stress. Stay organised and never miss an important date.</p>
+                    <a class="read" href="/About">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <span class="icon-pill"><i class="fa-solid fa-shield-halved"></i></span>
+                    <h3>No More Penalties</h3>
+                    <p>Avoid late submissions and costly fines with our smart deadline management system. Keep your filings on time, every time.</p>
+                    <a class="read" href="/About">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <span class="icon-pill"><i class="fa-solid fa-folder-tree"></i></span>
+                    <h3>Easy Organisation</h3>
+                    <p>Manage hundreds or thousands of client deadlines effortlessly. Our tool helps streamline your workflow and boost efficiency.</p>
+                    <a class="read" href="/About">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
+            </div>
+        </section>
+
+
+        <section class="sw-contact" id="contact">
+            <div class="container">
+                <div class="sw-contact-head">
+                    <p class="sw-about-tag">
+                        <span class="sw-about-icon"><i class="fa-solid fa-address-book"></i></span>
+                        <span class="sw-about-dots">...</span>
+                        <span class="sw-about-badge">Contact</span>
+                    </p>
+                    <h2>Contact Us</h2>
+                    <p>Weâ€™re always happy to help. Contact us for any questions or support.</p>
+                </div>
+
+                <div class="sw-contact-grid">
+                    <div class="sw-contact-cards">
+                        <article class="sw-contact-card primary">
+                            <div class="sw-contact-row">
+                                <span class="sw-contact-icon"><i class="fa-solid fa-phone-volume"></i></span>
+                                <p class="kicker">Call Us Directly At</p>
+                            </div>
+                            <p class="value value-lg">+0208 087 2245</p>
+                            <a class="sw-contact-btn sw-contact-btn-light" href="/Contact">Contact Us</a>
+                        </article>
+
+                        <article class="sw-contact-card">
+                            <div class="sw-contact-row">
+                                <span class="sw-contact-icon"><i class="fa-regular fa-envelope"></i></span>
+                                <p class="kicker">Chat With Our Team</p>
+                            </div>
+                            <p class="value">info@premiumaccountants.co.uk</p>
+                            <a class="sw-contact-btn sw-contact-btn-primary" href="/Contact">Contact Us</a>
+                        </article>
+                    </div>
+
+                    <div class="sw-contact-form-wrap">
+                        <h3>Send Details</h3>
+                        <form class="sw-contact-form" action="#" method="post">
+                            <label>
+                                <input class="sw-contact-input" type="text" name="name" placeholder="Name" />
+                            </label>
+                            <label>
+                                <input class="sw-contact-input" type="email" name="email" placeholder="Email" />
+                            </label>
+                            <label class="full">
+                                <input class="sw-contact-input" type="text" name="subject" placeholder="Subject" />
+                            </label>
+                            <label class="full">
+                                <textarea class="sw-contact-textarea" name="message" placeholder="Message"></textarea>
+                            </label>
+                            <div class="full">
+                                <button type="button" class="sw-contact-submit">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sw-testimonial" id="testimonial">
+            <div class="container">
+                <div class="sw-testimonial-grid">
+                    <div class="sw-testi-title">
+                        <p class="sw-about-tag">
+                            <span class="sw-about-icon"><i class="fa-solid fa-message"></i></span>
+                            <span class="sw-about-dots">...</span>
+                            <span class="sw-about-badge">Testimonial</span>
+                        </p>
+                        <h2>From Our Community.</h2>
+                        <p>Here's what other subscribers had to say about Production Online.</p>
+
+                        <ul class="sw-testi-avatars">
+                            <li><img src="~/skywave/avatar-6.jpg" alt="Reviewer avatar 1" /></li>
+                            <li><img src="~/skywave/avatar-7.jpg" alt="Reviewer avatar 2" /></li>
+                            <li><img src="~/skywave/avatar-8.jpg" alt="Reviewer avatar 3" /></li>
+                            <li><img src="~/skywave/avatar-9.jpg" alt="Reviewer avatar 4" /></li>
+                        </ul>
+
+                        <p class="sw-testi-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <strong>4.5</strong>
+                            <span>Best Review</span>
+                        </p>
+                    </div>
+
+                    <div class="sw-testi-card-wrap">
+                        <article class="sw-testi-card">
+                            <img class="company-logo" src="~/skywave/testimonial-premiumdm.png" alt="Premium Accountants logo" />
+                            <p class="sw-testi-quote">"Growth was implemented within minutes and it is now an essential part of our amazing development process."</p>
+
+                            <div class="sw-testi-user">
+                                <img src="~/skywave/avatar-3.jpg" alt="James Arthur profile" />
+                                <div>
+                                    <b>James Arthur</b>
+                                    <p>Senior Manager at Premium Accountants</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @* <section class="section" id="services">
+            <div class="head">
+                <span class="label"><i class="fa-solid fa-layer-group"></i> Our Services</span>
+                <h2>Awesome Financial Services For Business</h2>
+            </div>
+            <div class="grid-2">
+                <article class="card">
+                    <h3>Deadline Status Visualisation</h3>
+                    <p>Displays overdue and upcoming deadlines in a clear bar chart format to support task prioritisation.</p>
+                    <ul class="list">
+                        <li><i class="fa-solid fa-circle-check"></i><span>Track Overdue and Upcoming Deadlines</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i><span>Visual Reports and Graphs</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i><span>Customisable Deadline Filters</span></li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Client Deadline Prioritisation</h3>
+                    <p>Surface critical obligations first with intelligent prioritisation, so teams can act early and stay compliant.</p>
+                    <ul class="list">
+                        <li><i class="fa-solid fa-circle-check"></i><span>Priority-based deadline ranking</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i><span>Risk-focused workload planning</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i><span>Escalation on high-risk filings</span></li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Workflow Easier</h3>
+                    <p>Premium Deadline Management is here to help. We created a Companies House deadline tracker to overcome accountancy workflow hassle.</p>
+                    <ul class="list">
+                        <li><i class="fa-solid fa-circle-check"></i><span>Centralised Dashboard for All Clients</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i><span>Real-Time Deadline Updates</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i><span>Secure Cloud Storage</span></li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Auto Deadline Tracking</h3>
+                    <p>Automatically monitor key due dates and maintain visibility across large client portfolios.</p>
+                    <ul class="list">
+                        <li><i class="fa-solid fa-circle-check"></i><span>Automatic due-date monitoring</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i><span>Reliable status visibility</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i><span>Scalable workflow support</span></li>
+                    </ul>
+                </article>
+            </div>
+        </section> *@
+
+        <section class="section" id="support" style="padding-bottom:52px;">
+            <div class="card" style="display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap;background:linear-gradient(100deg,#1a69df,#2649be);color:#fff;border:0;">
+                <div>
+                    <h3 style="margin:0;font-size:32px;line-height:1.15;">Ready to stop missing filing deadlines?</h3>
+                    <p style="margin:10px 0 0;color:rgba(255,255,255,.92);">Your partner in performance growth with one central dashboard.</p>
+                </div>
+                <a class="btn" href="/Contact" style="background:#fff;color:#154cb7;">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background:#0f1f45;color:#dbe5ff;padding:48px 0 24px;">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="margin:0;font-size:18px;color:#fff;">Our Office</h3>
+                    <p style="margin:10px 0 0;"><i class="fa-solid fa-location-dot"></i> London, UK</p>
+                    <p style="margin:8px 0 0;"><i class="fa-solid fa-phone"></i> +0208 087 2245</p>
+                    <p style="margin:8px 0 0;"><i class="fa-solid fa-envelope"></i> info@premiumaccountants.co.uk</p>
+                </div>
+                <div>
+                    <h3 style="margin:0;font-size:18px;color:#fff;">Services</h3>
+                    <a href="/Service/ClientDeadlinePrioritisation" style="display:block;margin-top:10px;">Client Deadline Prioritisation</a>
+                    <a href="/Service/DeadlineStatusVisualization" style="display:block;margin-top:8px;">Deadline Status Visualisation</a>
+                    <a href="/Service/WorkflowEasier" style="display:block;margin-top:8px;">Workflow Easier</a>
+                    <a href="/Service/AutoDeadlineTracking" style="display:block;margin-top:8px;">Auto Deadline Tracking</a>
+                </div>
+                <div>
+                    <h3 style="margin:0;font-size:18px;color:#fff;">Quick Links</h3>
+                    <a href="/About" style="display:block;margin-top:10px;">About Us</a>
+                    <a href="/Contact" style="display:block;margin-top:8px;">Contact Us</a>
+                    <a href="/Service" style="display:block;margin-top:8px;">Our Services</a>
+                    <a href="/Support" style="display:block;margin-top:8px;">Support</a>
+                    <a href="/Term&Condition" style="display:block;margin-top:8px;">Terms and Conditions</a>
+                </div>
+                <div>
+                    <h3 style="margin:0;font-size:18px;color:#fff;">Newsletter</h3>
+                    <p style="margin:10px 0 0;">Stay updated with our latest news and updates.</p>
+                    <div style="display:flex;gap:8px;margin-top:10px;">
+                        <input type="email" placeholder="Your email" style="flex:1;min-width:0;border:1px solid #385496;background:#112658;color:#fff;border-radius:9px;padding:10px 12px;" />
+                        <button type="button" style="border:0;border-radius:9px;background:#1a6de6;color:#fff;padding:0 14px;font-weight:700;">Send</button>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:24px;padding-top:14px;border-top:1px solid rgba(171,191,240,.25);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:#a8b8e6;">
+                <span>&copy; 2026 Premium Deadline Management. All rights reserved.</span>
+                <span>Designed by <a href="https://mt-london.co.uk/" target="_blank" rel="noreferrer">Micro Tech London</a></span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

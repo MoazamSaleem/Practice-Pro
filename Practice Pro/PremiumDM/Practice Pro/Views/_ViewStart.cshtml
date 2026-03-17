@@ -1,0 +1,11 @@
+﻿
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml"; // Logged-in layout
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout1.cshtml"; // Default layout
+    }
+}

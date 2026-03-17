@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "Service") - Premium Deadline Management</title>
+    <meta name="description" content="Premium Deadline Management service details for accountancy teams managing Companies House filing deadlines." />
+    <link rel="icon" href="~/finanza-1.0.0/img/logo.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Rethink+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="~/finanza-1.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/service-pages.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+</head>
+
+<body class="service-layout-body">
+    @await Html.PartialAsync("_UnifiedHeader")
+
+    <div id="app">
+        @RenderBody()
+    </div>
+
+    <footer class="service-theme-footer">
+        <div class="service-theme-container">
+            <div class="service-theme-footer-grid">
+                <div>
+                    <h3>Our Office</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> London, UK</p>
+                    <p><i class="fa-solid fa-phone"></i> +0208 087 2245</p>
+                    <p><i class="fa-solid fa-envelope"></i> info@premiumaccountants.co.uk</p>
+                </div>
+
+                <div>
+                    <h3>Services</h3>
+                    <a href="/Service/ClientDeadlinePrioritisation">Client Deadline Prioritisation</a>
+                    <a href="/Service/DeadlineStatusVisualization">Deadline Status Visualisation</a>
+                    <a href="/Service/CompaniesHouseSync">Companies House Sync</a>
+                    <a href="/Service/WorkflowEasier">Workflow Easier</a>
+                    <a href="/Service/AutoDeadlineTracking">Auto Deadline Tracking</a>
+                </div>
+
+                <div>
+                    <h3>Quick Links</h3>
+                    <a href="/About">About Us</a>
+                    <a href="/Contact">Contact Us</a>
+                    <a href="/Service">Our Services</a>
+                    <a href="/Support">Support</a>
+                    <a href="/Term&Condition">Terms and Conditions</a>
+                </div>
+
+                <div>
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and updates.</p>
+                    <div class="service-newsletter">
+                        <input type="email" placeholder="Your email" />
+                        <button type="button">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-theme-copyright">
+                <span>&copy; 2026 Premium Deadline Management. All rights reserved.</span>
+                <span>Designed by <a href="https://mt-london.co.uk/" target="_blank" rel="noreferrer">Micro Tech London</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

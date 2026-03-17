@@ -1,0 +1,390 @@
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+
+    .udm-header-root {
+        --udm-line: #d7e3ff;
+        --udm-text: #111b2f;
+        --udm-text-lite: #ffff;
+        --udm-muted: #586788;
+        --udm-primary: #1769e6;
+        --udm-primary-2: #114fb3;
+        --udm-soft: #eaf1ff;
+        font-family: "Manrope", sans-serif;
+    }
+
+    .udm-header-root * {
+        box-sizing: border-box;
+    }
+
+    .udm-header-root a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .udm-container {
+        width: min(1180px, calc(100% - 36px));
+        margin: 0 auto;
+    }
+
+    .udm-topbar {
+        background: linear-gradient(90deg, #1675ea, #0f62d0);
+        color: #fff;
+    }
+
+    .udm-topbar-wrap {
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding: 8px 0;
+    }
+
+    .udm-topbar-group {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 14px;
+    }
+
+    .udm-topbar-group a,
+    .udm-topbar-group span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .udm-socials {
+        display: inline-flex;
+        gap: 8px;
+    }
+
+    .udm-socials a {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .udm-header-shell {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(243, 247, 255, 0.93);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid #d6e1fa;
+    }
+
+    .udm-site-header {
+        min-height: 84px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .udm-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .udm-brand img {
+        height: 50px;
+        border-radius: 8px;
+    }
+
+    .udm-brand b {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 20px;
+        letter-spacing: 0.01em;
+        color: var(--udm-text);
+    }
+
+    .udm-brand small {
+        color: var(--udm-muted);
+        font-size: 11px;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        display: block;
+        line-height: 1.2;
+    }
+
+    .udm-menu-toggle {
+        display: none;
+        margin-left: auto;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--udm-line);
+        border-radius: 11px;
+        background: #fff;
+        color: #24314f;
+        cursor: pointer;
+    }
+
+    .udm-main-nav {
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .udm-main-nav > a,
+    .udm-menu-btn {
+        border: 0;
+        background: transparent;
+        font: inherit;
+        font-weight: 700;
+        color: #293759;
+        padding: 9px 12px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+
+    .udm-main-nav > a:hover,
+    .udm-menu-btn:hover {
+        background: #e7f0ff;
+    }
+
+    .udm-dropdown {
+        position: relative;
+    }
+
+    .udm-dropdown-menu {
+        list-style: none;
+        margin: 0;
+        padding: 10px;
+        min-width: 275px;
+        border: 1px solid var(--udm-line);
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 14px 34px rgba(17, 36, 82, 0.16);
+        position: absolute;
+        left: 0;
+        top: calc(100% + 8px);
+        display: none;
+    }
+
+    .udm-dropdown-menu li + li {
+        margin-top: 4px;
+    }
+
+    .udm-dropdown-menu a {
+        display: block;
+        padding: 8px 10px;
+        border-radius: 8px;
+        color: #2f4169;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .udm-dropdown-menu a:hover {
+        background: #edf3ff;
+    }
+
+    .udm-dropdown:hover .udm-dropdown-menu,
+    .udm-dropdown:focus-within .udm-dropdown-menu,
+    .udm-dropdown.open .udm-dropdown-menu {
+        display: block;
+    }
+
+    .udm-header-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .udm-logout-form {
+        margin: 0;
+    }
+
+    .udm-btn {
+        border: 0;
+        min-height: 41px;
+        padding: 0 16px;
+        border-radius: 999px;
+        font: inherit;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+
+    .udm-btn-primary {
+        color: #fff !important;
+        background: linear-gradient(90deg, var(--udm-primary), #2080ff);
+        box-shadow: 0 10px 20px rgba(23, 105, 230, 0.27);
+    }
+
+    .udm-btn-primary:hover,
+    .udm-btn-primary:focus,
+    .udm-btn-primary:visited {
+        color: #fff !important;
+        background: linear-gradient(90deg, var(--udm-primary-2), #0f66db);
+    }
+
+    .udm-btn-soft {
+        color: #194ca8;
+        background: var(--udm-soft);
+    }
+
+    @@media (max-width: 920px) {
+        .udm-menu-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .udm-site-header {
+            flex-wrap: wrap;
+            padding: 14px 0;
+        }
+
+        .udm-main-nav,
+        .udm-header-actions {
+            width: 100%;
+            display: none;
+        }
+
+        .udm-site-header.open .udm-main-nav,
+        .udm-site-header.open .udm-header-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .udm-dropdown,
+        .udm-dropdown .udm-menu-btn {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .udm-dropdown-menu {
+            position: static;
+            width: 100%;
+            box-shadow: none;
+            margin-top: 6px;
+        }
+
+        .udm-dropdown:hover .udm-dropdown-menu,
+        .udm-dropdown:focus-within .udm-dropdown-menu {
+            display: none;
+        }
+
+        .udm-dropdown.open .udm-dropdown-menu {
+            display: block;
+        }
+
+        .udm-topbar-wrap {
+            justify-content: center;
+        }
+    }
+
+    @@media (max-width: 680px) {
+        .udm-container {
+            width: calc(100% - 22px);
+        }
+    }
+</style>
+
+<div class="udm-header-root">
+    <div class="udm-topbar">
+        <div class="udm-container udm-topbar-wrap">
+            <div class="udm-topbar-group">
+                <a href="mailto:info@premiumaccountants.co.uk"><i class="fa-solid fa-envelope"></i> info@premiumaccountants.co.uk</a>
+                @* <span><i class="fa-solid fa-clock"></i> 9.00 am - 9.00 pm</span> *@
+            </div>
+            <div class="udm-topbar-group">
+                <a href="tel:+02080872245"><i class="fa-solid fa-phone"></i> +0208 087 2245</a>
+                <div class="udm-socials" aria-label="Social links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="udm-header-shell">
+        <header class="udm-container udm-site-header" id="udmSiteHeader">
+            <a class="udm-brand" href="/">
+                <img src="~/finanza-1.0.0/img/logo.jpg" alt="Premium Deadline Management logo" />
+                @* <span>
+                    <b>PremiumDM</b>
+                    <small>Deadline Management</small>
+                </span> *@
+            </a>
+
+            <button type="button" class="udm-menu-toggle" id="udmMenuToggle" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="udm-main-nav" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/About">About</a>
+                @* <a href="/#why">Why ChooseUs</a> *@
+                <div class="udm-dropdown" id="udmServicesDropdown">
+                    <button type="button" class="udm-menu-btn" id="udmServicesToggle">Services <i class="fa-solid fa-angle-down"></i></button>
+                    <ul class="udm-dropdown-menu">
+                        <li><a href="/Service/ClientDeadlinePrioritisation">Client Deadline Prioritisation</a></li>
+                        <li><a href="/Service/DeadlineStatusVisualization">Deadline Status Visualisation</a></li>
+                        <li><a href="/Service/CompaniesHouseSync">Companies House Sync</a></li>
+                        <li><a href="/Service/WorkflowEasier">Workflow Easier</a></li>
+                        <li><a href="/Service/AutoDeadlineTracking">Auto Deadline Tracking</a></li>
+                    </ul>
+                </div>
+                <a href="/Contact">Contact</a>
+            </nav>
+
+            <div class="udm-header-actions">
+                @if (User.Identity?.IsAuthenticated ?? false)
+                {
+                    <a class="udm-btn udm-btn-soft" href="/DashBoard"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+                    <form class="udm-logout-form" method="post" asp-controller="Account" asp-action="Logout">
+                        @Html.AntiForgeryToken()
+                        <button class="udm-btn udm-btn-primary" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+                    </form>
+                }
+                else
+                {
+                    <a class="udm-btn udm-btn-soft" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-user"></i> Log in</a>
+                    <a class="udm-btn udm-btn-primary" asp-controller="Account" asp-action="Signup">Register</a>
+                }
+            </div>
+        </header>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const siteHeader = document.getElementById("udmSiteHeader");
+        const menuToggle = document.getElementById("udmMenuToggle");
+        const servicesToggle = document.getElementById("udmServicesToggle");
+        const servicesDropdown = document.getElementById("udmServicesDropdown");
+
+        if (menuToggle && siteHeader) {
+            menuToggle.addEventListener("click", function () {
+                siteHeader.classList.toggle("open");
+            });
+        }
+
+        if (servicesToggle && servicesDropdown) {
+            servicesToggle.addEventListener("click", function (event) {
+                if (window.matchMedia("(max-width: 920px)").matches) {
+                    event.preventDefault();
+                    servicesDropdown.classList.toggle("open");
+                }
+            });
+        }
+    })();
+</script>
