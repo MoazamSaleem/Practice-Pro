@@ -665,6 +665,140 @@
             color: #fff;
         }
 
+        .sw-sync {
+            margin-inline: calc(50% - 50vw);
+            background: linear-gradient(130deg, #f3f7ff 0%, #eef3ff 48%, #f9fbff 100%);
+            padding: var(--section-py) 0;
+            font-family: "Rethink Sans", sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sw-sync::before {
+            content: "";
+            position: absolute;
+            right: -140px;
+            top: -120px;
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(16, 82, 185, 0.2) 0%, rgba(16, 82, 185, 0) 70%);
+        }
+
+        .sw-sync::after {
+            content: "";
+            position: absolute;
+            left: -120px;
+            bottom: -140px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(236, 124, 90, 0.22) 0%, rgba(236, 124, 90, 0) 70%);
+        }
+
+        .sw-sync-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 36px;
+            align-items: center;
+        }
+
+        .sw-sync-copy {
+            max-width: 560px;
+        }
+
+        .sw-sync-title {
+            margin: 14px 0 0;
+            color: #182235;
+            font-size: clamp(30px, 3.6vw, 42px);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .sw-sync-desc {
+            margin: 18px 0 0;
+            color: #4f617b;
+            font-size: var(--text-lg);
+            line-height: 1.55;
+        }
+
+        .sw-sync-points {
+            margin-top: 22px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .sw-sync-point {
+            margin: 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #1f2b45;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .sw-sync-point i {
+            color: #13ce67;
+            margin-top: 2px;
+        }
+
+        .sw-sync-actions {
+            margin-top: 26px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .sw-sync-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            border-radius: 999px;
+            padding: 0 28px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            background: #1052B9;
+            border: 1px solid #1052B9;
+            transition: all 0.2s ease;
+        }
+
+        .sw-sync-btn:hover {
+            background: #ec7c5a;
+            border-color: #ec7c5a;
+        }
+
+        .sw-sync-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4f617b;
+            font-size: 14px;
+        }
+
+        .sw-sync-media {
+            display: flex;
+            justify-content: center;
+        }
+
+        .sw-sync-frame {
+            background: #fff;
+            border-radius: 26px;
+            padding: 14px;
+            border: 1px solid #e1e9f8;
+            box-shadow: 0 30px 60px rgba(17, 36, 82, 0.15);
+        }
+
+        .sw-sync-frame img {
+            width: 100%;
+            display: block;
+            border-radius: 18px;
+        }
+
         .sw-counter-band {
             margin-inline: calc(50% - 50vw);
             background-color: #0e2053;
@@ -1112,6 +1246,9 @@
             .sw-about-head h2 { font-size: clamp(28px, 4.5vw, 38px); }
             .sw-features-grid { grid-template-columns: 1fr; }
             .sw-services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .sw-sync-grid { grid-template-columns: 1fr; }
+            .sw-sync-copy { max-width: none; }
+            .sw-sync-frame { max-width: 720px; }
             .sw-counter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .sw-counter-item { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
             .sw-counter-item:nth-child(-n+2) { border-top: 0; }
@@ -1171,6 +1308,13 @@
             .sw-services-grid { grid-template-columns: 1fr; gap: 12px; }
             .sw-service-card p { font-size: 16px; }
             .sw-service-card a { font-size: 16px; }
+            .sw-sync { padding: var(--section-py-sm) 0; }
+            .sw-sync-title { font-size: clamp(26px, 7.2vw, 34px); }
+            .sw-sync-desc { font-size: 16px; }
+            .sw-sync-point { font-size: 16px; }
+            .sw-sync-actions { flex-direction: column; align-items: stretch; }
+            .sw-sync-btn { width: 100%; min-height: 54px; }
+            .sw-sync-note { justify-content: center; }
             .sw-counter-band { padding: 30px 0; }
             .sw-counter-grid { grid-template-columns: 1fr; }
             .sw-counter-item { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 14px 6px; }
@@ -1287,6 +1431,39 @@
                                 <span class="pill-icon"><i class="fa-solid fa-building-columns"></i></span>
                                 Companies House Integrated
                             </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sw-sync" id="integration">
+            <div class="container">
+                <div class="sw-sync-grid">
+                    <div class="sw-sync-copy">
+                        <p class="sw-about-tag">
+                            <span class="sw-about-icon"><i class="fa-solid fa-link"></i></span>
+                            <span class="sw-about-dots">...</span>
+                            <span class="sw-about-badge">Companies House Sync</span>
+                        </p>
+                        <h2 class="sw-sync-title">Synced With Companies House, Always Current</h2>
+                        <p class="sw-sync-desc">Keep every client record aligned with Companies House data. Deadlines refresh automatically so your team can act early and avoid last-minute rushes.</p>
+
+                        <div class="sw-sync-points">
+                            <p class="sw-sync-point"><i class="fa-solid fa-circle-check"></i><span>Automatic accounts and CS01 deadline refreshes</span></p>
+                            <p class="sw-sync-point"><i class="fa-solid fa-circle-check"></i><span>Status alerts and upcoming obligations in one place</span></p>
+                            <p class="sw-sync-point"><i class="fa-solid fa-circle-check"></i><span>Audit-ready history for every filing</span></p>
+                        </div>
+
+                        <div class="sw-sync-actions">
+                            <a class="sw-sync-btn" href="/Contact">Book a Demo</a>
+                            <span class="sw-sync-note"><i class="fa-regular fa-clock"></i> Updates run throughout the day</span>
+                        </div>
+                    </div>
+
+                    <div class="sw-sync-media">
+                        <div class="sw-sync-frame">
+                            <img src="~/skywave/companies-house-sync.jpeg" alt="Synced with Companies House overview" />
                         </div>
                     </div>
                 </div>
