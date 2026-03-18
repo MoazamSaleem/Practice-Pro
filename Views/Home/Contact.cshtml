@@ -1,4 +1,4 @@
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -6,52 +6,6 @@
 <style>
     .pdm-contact-section {
         padding-top: 30px !important;
-    }
-
-    body > .container-fluid.footer,
-    body > .container-fluid.copyright {
-        display: none !important;
-    }
-
-    .pdm-contact-footer {
-        background: #0f1f45;
-        color: #dbe5ff;
-        padding: 48px 0 24px;
-    }
-
-    .pdm-contact-footer a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    .pdm-contact-footer .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 18px;
-    }
-
-    .pdm-contact-footer .footer-copy {
-        margin-top: 24px;
-        padding-top: 14px;
-        border-top: 1px solid rgba(171, 191, 240, 0.25);
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        flex-wrap: wrap;
-        font-size: 12px;
-        color: #a8b8e6;
-    }
-
-    @@media (max-width: 1020px) {
-        .pdm-contact-footer .footer-grid {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-
-    @@media (max-width: 680px) {
-        .pdm-contact-footer .footer-grid {
-            grid-template-columns: 1fr;
-        }
     }
 </style>
 }
@@ -87,7 +41,6 @@
                                 Call us directly
                             </p>
                             <h5 class="mb-2">+0208 087 2245</h5>
-                            <p class="mb-0 text-muted">9.00 am to 9.00 pm, Monday to Saturday.</p>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -97,7 +50,7 @@
                                 Email support
                             </p>
                             <h6 class="mb-2">info@premiumaccountants.co.uk</h6>
-                            <p class="mb-0 text-muted">For account enquiries and setup support.</p>
+                            @* <p class="mb-0 text-muted">For account enquiries and setup support.</p> *@
                         </div>
                     </div>
                 </div>
@@ -156,42 +109,3 @@
     </div>
 </div>
 
-<footer class="pdm-contact-footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div>
-                <h3 style="margin:0;font-size:18px;color:#fff;">Our Office</h3>
-                <p style="margin:10px 0 0;"><i class="fa-solid fa-location-dot"></i> London, UK</p>
-                <p style="margin:8px 0 0;"><i class="fa-solid fa-phone"></i> +0208 087 2245</p>
-                <p style="margin:8px 0 0;"><i class="fa-solid fa-envelope"></i> info@premiumaccountants.co.uk</p>
-            </div>
-            <div>
-                <h3 style="margin:0;font-size:18px;color:#fff;">Services</h3>
-                <a href="/Service/ClientDeadlinePrioritisation" style="display:block;margin-top:10px;">Client Deadline Prioritisation</a>
-                <a href="/Service/DeadlineStatusVisualization" style="display:block;margin-top:8px;">Deadline Status Visualisation</a>
-                <a href="/Service/WorkflowEasier" style="display:block;margin-top:8px;">Workflow Easier</a>
-                <a href="/Service/AutoDeadlineTracking" style="display:block;margin-top:8px;">Auto Deadline Tracking</a>
-            </div>
-            <div>
-                <h3 style="margin:0;font-size:18px;color:#fff;">Quick Links</h3>
-                <a href="/About" style="display:block;margin-top:10px;">About Us</a>
-                <a href="/Contact" style="display:block;margin-top:8px;">Contact Us</a>
-                <a href="/Service" style="display:block;margin-top:8px;">Our Services</a>
-                <a href="/Support" style="display:block;margin-top:8px;">Support</a>
-                <a href="/Term&Condition" style="display:block;margin-top:8px;">Terms and Conditions</a>
-            </div>
-            <div>
-                <h3 style="margin:0;font-size:18px;color:#fff;">Newsletter</h3>
-                <p style="margin:10px 0 0;">Stay updated with our latest news and updates.</p>
-                <div style="display:flex;gap:8px;margin-top:10px;">
-                    <input type="email" placeholder="Your email" style="flex:1;min-width:0;border:1px solid #385496;background:#112658;color:#fff;border-radius:9px;padding:10px 12px;" />
-                    <button type="button" style="border:0;border-radius:9px;background:#1a6de6;color:#fff;padding:0 14px;font-weight:700;">Send</button>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copy">
-            <span>&copy; 2026 Premium Deadline Management. All rights reserved.</span>
-            <span>Designed by <a href="https://mt-london.co.uk/" target="_blank" rel="noreferrer">Micro Tech London</a></span>
-        </div>
-    </div>
-</footer>

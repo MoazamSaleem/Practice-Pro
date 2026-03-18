@@ -1208,6 +1208,8 @@
             .sw-contact-submit { min-height: 52px; width: 100%; }
         }
     </style>
+    <link rel="stylesheet" href="~/css/responsive-overrides.css" />
+    <link rel="stylesheet" href="~/css/cookie-consent.css" />
 </head>
 <body>
     @await Html.PartialAsync("_UnifiedHeader")
@@ -1222,8 +1224,8 @@
                         <p class="sw-desc">Premium Deadline Management is a cloud portal that works as a Companies House filing deadline manager, allowing accountants to manage their clients' Companies House filing deadlines.</p>
 
                         <div class="sw-points">
-                            <p class="sw-point"><i class="fa-solid fa-circle-check"></i><span>No Overcomplication</span></p>
-                            <p class="sw-point"><i class="fa-solid fa-circle-check"></i><span>Workflow Easier</span></p>
+                            <p class="sw-point"><i class="fa-solid fa-circle-check"></i><span>Not Overcomplicated</span></p>
+                            <p class="sw-point"><i class="fa-solid fa-circle-check"></i><span>Easier Workflow</span></p>
                         </div>
 
                         <div class="sw-users">
@@ -1310,7 +1312,7 @@
                     <article class="sw-feature-card">
                         <div class="sw-feature-head">
                             <span class="sw-feature-icon"><i class="fa-solid fa-table-cells-large"></i></span>
-                            <h3>No Overcomplication</h3>
+                            <h3>Not Overcomplicated</h3>
                         </div>
                         <p>A straightforward cloud portal that keeps filing work visible, practical, and easy to manage.</p>
                        
@@ -1319,7 +1321,7 @@
                     <article class="sw-feature-card">
                         <div class="sw-feature-head">
                             <span class="sw-feature-icon"><i class="fa-solid fa-code-branch"></i></span>
-                            <h3>Workflow Easier</h3>
+                            <h3>Easier Workflow</h3>
                         </div>
                         <p>Track deadlines for all of your clients in one place and plan ahead with a smoother day-to-day workflow.</p>
                         
@@ -1367,7 +1369,7 @@
 
                     <article class="sw-service-card active">
                         <span class="sw-service-icon"><i class="fa-solid fa-code-branch"></i></span>
-                        <h3>Workflow Easier</h3>
+                        <h3>Easier Workflow</h3>
                         <p>Premium Deadline Management is here to help. We created a Companies House deadline tracker to overcome the hassle accountancy practices normally need to bear.</p>
                         @* <a href="/Service">View More</a> *@
                     </article>
@@ -1561,7 +1563,7 @@
                     </ul>
                 </article>
                 <article class="card">
-                    <h3>Workflow Easier</h3>
+                    <h3>Easier Workflow</h3>
                     <p>Premium Deadline Management is here to help. We created a Companies House deadline tracker to overcome accountancy workflow hassle.</p>
                     <ul class="list">
                         <li><i class="fa-solid fa-circle-check"></i><span>Centralised Dashboard for All Clients</span></li>
@@ -1592,45 +1594,10 @@
         </section>
     </main>
 
-    <footer style="background:#0f1f45;color:#dbe5ff;padding:48px 0 24px;">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h3 style="margin:0;font-size:18px;color:#fff;">Our Office</h3>
-                    <p style="margin:10px 0 0;"><i class="fa-solid fa-location-dot"></i> London, UK</p>
-                    <p style="margin:8px 0 0;"><i class="fa-solid fa-phone"></i> +0208 087 2245</p>
-                    <p style="margin:8px 0 0;"><i class="fa-solid fa-envelope"></i> info@premiumaccountants.co.uk</p>
-                </div>
-                <div>
-                    <h3 style="margin:0;font-size:18px;color:#fff;">Services</h3>
-                    <a href="/Service/ClientDeadlinePrioritisation" style="display:block;margin-top:10px;">Client Deadline Prioritisation</a>
-                    <a href="/Service/DeadlineStatusVisualization" style="display:block;margin-top:8px;">Deadline Status Visualisation</a>
-                    <a href="/Service/WorkflowEasier" style="display:block;margin-top:8px;">Workflow Easier</a>
-                    <a href="/Service/AutoDeadlineTracking" style="display:block;margin-top:8px;">Auto Deadline Tracking</a>
-                </div>
-                <div>
-                    <h3 style="margin:0;font-size:18px;color:#fff;">Quick Links</h3>
-                    <a href="/About" style="display:block;margin-top:10px;">About Us</a>
-                    <a href="/Contact" style="display:block;margin-top:8px;">Contact Us</a>
-                    <a href="/Service" style="display:block;margin-top:8px;">Our Services</a>
-                    <a href="/Support" style="display:block;margin-top:8px;">Support</a>
-                    <a href="/Term&Condition" style="display:block;margin-top:8px;">Terms and Conditions</a>
-                </div>
-                <div>
-                    <h3 style="margin:0;font-size:18px;color:#fff;">Newsletter</h3>
-                    <p style="margin:10px 0 0;">Stay updated with our latest news and updates.</p>
-                    <div style="display:flex;gap:8px;margin-top:10px;">
-                        <input type="email" placeholder="Your email" style="flex:1;min-width:0;border:1px solid #385496;background:#112658;color:#fff;border-radius:9px;padding:10px 12px;" />
-                        <button type="button" style="border:0;border-radius:9px;background:#1a6de6;color:#fff;padding:0 14px;font-weight:700;">Send</button>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-top:24px;padding-top:14px;border-top:1px solid rgba(171,191,240,.25);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:#a8b8e6;">
-                <span>&copy; 2026 Premium Deadline Management. All rights reserved.</span>
-                <span>Designed by <a href="https://mt-london.co.uk/" target="_blank" rel="noreferrer">Micro Tech London</a></span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_UnifiedFooter")
 
+    @await Html.PartialAsync("_CookieConsent")
+    <script src="~/js/cookie-consent.js"></script>
 </body>
 </html>
+

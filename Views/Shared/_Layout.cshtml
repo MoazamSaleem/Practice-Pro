@@ -51,6 +51,8 @@
     {
         <link rel="stylesheet" href="~/css/dashboard.css" />
     }
+    <link rel="stylesheet" href="~/css/responsive-overrides.css" />
+    <link rel="stylesheet" href="~/css/cookie-consent.css" />
 </head>
 
 <body>
@@ -82,21 +84,8 @@
     </div>
     @if (!isDashboard)
     {
-    <!-- ======= Footer ======= -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="copyright-box">
-                        <p class="copyright">&copy; Copyright <strong>PremiumDM</strong>. All Rights Reserved</p>
-                        <div class="credits">
-                            Designed by <a href="https://mt-london.co.uk/">Micro Tech London</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer><!-- End  Footer -->
+        @await Html.PartialAsync("_UnifiedFooter")
+        @await Html.PartialAsync("_CookieConsent")
     }
 
     <div id="preloader"></div>
@@ -124,6 +113,10 @@
     <script src="~/dist/build.js"></script>
     <!-- Template Main JS File -->
     <script src="~/DevFolio/assets/js/main.js"></script>
+    @if (!isDashboard)
+    {
+        <script src="~/js/cookie-consent.js"></script>
+    }
 </body>
 
 </html>
@@ -139,7 +132,7 @@
         flex: 1; /* Pushes footer to the bottom */
     }
 
-    footer {
+    .dash-footer {
         text-align: center;
     }
 </style>

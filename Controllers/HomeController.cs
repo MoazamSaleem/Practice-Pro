@@ -17,7 +17,6 @@ namespace Practice_Pro.Controllers
 
         [HttpGet("/")]
         [HttpGet("Support")]
-        [HttpGet("Term&Condition")]
         public IActionResult Index()
         {
             return View();
@@ -43,6 +42,25 @@ namespace Practice_Pro.Controllers
 
         [HttpGet("About")] // Maps to "/About"
         public IActionResult About()
+        {
+            return View();
+        }
+
+        [HttpGet("Terms-and-Conditions")]
+        [HttpGet("Term&Condition")]
+        public IActionResult TermsAndConditions()
+        {
+            return View();
+        }
+
+        [HttpGet("Privacy-Policy")]
+        public IActionResult PrivacyPolicy()
+        {
+            return View();
+        }
+
+        [HttpGet("Cookies-Policy")]
+        public IActionResult CookiesPolicy()
         {
             return View();
         }

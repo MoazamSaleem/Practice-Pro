@@ -400,6 +400,8 @@
             .about-cta h3 { font-size:clamp(26px,8vw,34px); }
         }
     </style>
+    <link rel="stylesheet" href="~/css/responsive-overrides.css" />
+    <link rel="stylesheet" href="~/css/cookie-consent.css" />
 </head>
 <body>
     @await Html.PartialAsync("_UnifiedHeader")
@@ -457,12 +459,12 @@
                 <div class="principles-grid">
                     <article class="principle-card">
                         <span class="principle-icon"><i class="fa-solid fa-sliders"></i></span>
-                        <h3>No Overcomplication</h3>
+                        <h3>Not Overcomplicated</h3>
                         <p>Fast setup and a practical interface that teams can adopt without heavy onboarding overhead.</p>
                     </article>
                     <article class="principle-card">
                         <span class="principle-icon"><i class="fa-solid fa-diagram-project"></i></span>
-                        <h3>Workflow Easier</h3>
+                        <h3>Easier Workflow</h3>
                         <p>Centralised client deadline management with clear statuses and quick filtering for action.</p>
                     </article>
                     <article class="principle-card">
@@ -539,45 +541,10 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h3 style="margin:0;font-size:18px;color:#fff;">Our Office</h3>
-                    <p style="margin:10px 0 0;"><i class="fa-solid fa-location-dot"></i> London, UK</p>
-                    <p style="margin:8px 0 0;"><i class="fa-solid fa-phone"></i> +0208 087 2245</p>
-                    <p style="margin:8px 0 0;"><i class="fa-solid fa-envelope"></i> info@premiumaccountants.co.uk</p>
-                </div>
-                <div>
-                    <h3 style="margin:0;font-size:18px;color:#fff;">Services</h3>
-                    <a href="/Service/ClientDeadlinePrioritisation" style="display:block;margin-top:10px;">Client Deadline Prioritisation</a>
-                    <a href="/Service/DeadlineStatusVisualization" style="display:block;margin-top:8px;">Deadline Status Visualisation</a>
-                    <a href="/Service/WorkflowEasier" style="display:block;margin-top:8px;">Workflow Easier</a>
-                    <a href="/Service/AutoDeadlineTracking" style="display:block;margin-top:8px;">Auto Deadline Tracking</a>
-                </div>
-                <div>
-                    <h3 style="margin:0;font-size:18px;color:#fff;">Quick Links</h3>
-                    <a href="/" style="display:block;margin-top:10px;">Home</a>
-                    <a href="/About" style="display:block;margin-top:8px;">About Us</a>
-                    <a href="/Contact" style="display:block;margin-top:8px;">Contact Us</a>
-                    <a href="/Service" style="display:block;margin-top:8px;">Our Services</a>
-                </div>
-                <div>
-                    <h3 style="margin:0;font-size:18px;color:#fff;">Newsletter</h3>
-                    <p style="margin:10px 0 0;">Stay updated with our latest news and updates.</p>
-                    <div style="display:flex;gap:8px;margin-top:10px;">
-                        <input type="email" placeholder="Your email" style="flex:1;min-width:0;border:1px solid #385496;background:#112658;color:#fff;border-radius:9px;padding:10px 12px;" />
-                        <button type="button" style="border:0;border-radius:9px;background:#1a6de6;color:#fff;padding:0 14px;font-weight:700;">Send</button>
-                    </div>
-                </div>
-            </div>
-            <div style="margin-top:24px;padding-top:14px;border-top:1px solid rgba(171,191,240,.25);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:#a8b8e6;">
-                <span>&copy; 2026 Premium Deadline Management. All rights reserved.</span>
-                <span>Designed by <a href="https://mt-london.co.uk/" target="_blank" rel="noreferrer">Micro Tech London</a></span>
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_UnifiedFooter")
 
+    @await Html.PartialAsync("_CookieConsent")
+    <script src="~/js/cookie-consent.js"></script>
 </body>
 </html>
 
