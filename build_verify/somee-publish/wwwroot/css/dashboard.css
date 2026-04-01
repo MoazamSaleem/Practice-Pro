@@ -1,0 +1,68 @@
+/* Dashboard Global Layout Styles */
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
+.dash-shell {
+  width: 100%;
+  margin: 0;
+  font-family: "Rethink Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dash-frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f7f4fb;
+  /* Removed border and shadow as per user request for a more professional look */
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.dash-body {
+  flex: 1;
+  padding: 25px 35px;
+}
+
+/* Typography resets for dashboard */
+.dash-shell h1, .dash-shell h2, .dash-shell h3, .dash-shell h4, .dash-shell h5, .dash-shell h6 {
+  font-family: "Rethink Sans", sans-serif;
+}
+
+/* Sticky Header Adjustment */
+.dash-portal-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Footer logic for dashboard */
+.dash-footer {
+  padding: 15px 35px;
+  background: #ffffff;
+  border-top: 1px solid #efe7f4;
+  text-align: center;
+  margin-top: auto;
+}
+
+.dash-footer p {
+  margin: 0;
+  color: #85778f;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .dash-body {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-body {
+    padding: 16px;
+  }
+}
