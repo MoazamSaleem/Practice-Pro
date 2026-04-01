@@ -65,6 +65,13 @@ namespace Practice_Pro.Controllers
             return View();
         }
 
+        [HttpGet("Sitemap")]
+        [HttpGet("sitemap.html")]
+        public IActionResult Sitemap()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

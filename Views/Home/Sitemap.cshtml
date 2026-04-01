@@ -1,0 +1,89 @@
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["Title"] = "Sitemap";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/sitemap-page.css" />
+}
+
+<main class="sitemap-page">
+    <section class="sitemap-hero">
+        <div class="container">
+            <span class="sitemap-crumb"><i class="fa-solid fa-house"></i> <a href="/">Home</a> <i class="fa-solid fa-angle-right"></i> Sitemap</span>
+            <h1>Sitemap</h1>
+            <p>Browse the main pages, service pages, and useful resources from one organised site map.</p>
+        </div>
+    </section>
+
+    <section class="sitemap-body">
+        <div class="container">
+            <div class="sitemap-grid">
+                <article class="sitemap-card">
+                    <div class="sitemap-card-head">
+                        <span class="sitemap-card-icon"><i class="fa-solid fa-compass"></i></span>
+                        <div>
+                            <h2>Main Pages</h2>
+                            <p>Core public website pages.</p>
+                        </div>
+                    </div>
+                    <ul class="sitemap-list">
+                        <li><a href="/">Home <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/About">About <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Service">Services <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Contact">Contact <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                    </ul>
+                </article>
+
+                <article class="sitemap-card">
+                    <div class="sitemap-card-head">
+                        <span class="sitemap-card-icon"><i class="fa-solid fa-layer-group"></i></span>
+                        <div>
+                            <h2>Service Pages</h2>
+                            <p>Detailed feature and workflow pages.</p>
+                        </div>
+                    </div>
+                    <ul class="sitemap-list">
+                        <li><a href="/Service/ClientDeadlinePrioritisation">Client Deadline Prioritisation <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Service/DeadlineStatusVisualization">Deadline Status Visualisation <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Service/CompaniesHouseSync">Companies House Sync <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Service/WorkflowEasier">Easier Workflow <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Service/AutoDeadlineTracking">Auto Deadline Tracking <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                    </ul>
+                </article>
+
+                <article class="sitemap-card">
+                    <div class="sitemap-card-head">
+                        <span class="sitemap-card-icon"><i class="fa-solid fa-user-shield"></i></span>
+                        <div>
+                            <h2>Account Pages</h2>
+                            <p>Access and account-related pages.</p>
+                        </div>
+                    </div>
+                    <ul class="sitemap-list">
+                        <li><a href="/Account/Login">Log in <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Account/Signup">Register <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Account/ForgotPassword">Forgot Password <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/DashBoard">Dashboard <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                    </ul>
+                </article>
+
+                <article class="sitemap-card">
+                    <div class="sitemap-card-head">
+                        <span class="sitemap-card-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+                        <div>
+                            <h2>Policies and Resources</h2>
+                            <p>Legal pages and site resources.</p>
+                        </div>
+                    </div>
+                    <ul class="sitemap-list">
+                        <li><a href="/Terms-and-Conditions">Terms &amp; Conditions <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Privacy-Policy">Privacy Policy <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/Cookies-Policy">Cookies Policy <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                        <li><a href="/sitemap.html">Sitemap <i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+</main>

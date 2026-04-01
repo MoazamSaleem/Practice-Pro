@@ -17,8 +17,8 @@
 
         <div class="auth-side-grid">
           <article class="auth-side-card">
-            <strong>30 days</strong>
-            <span>Free trial to test the full workflow</span>
+            <strong>Quick start</strong>
+            <span>Set up the full workflow for your firm</span>
           </article>
           <article class="auth-side-card">
             <strong>Secure</strong>
