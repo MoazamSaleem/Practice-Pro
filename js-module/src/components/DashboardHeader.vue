@@ -11,8 +11,24 @@
     <nav class="dash-portal-nav" aria-label="Dashboard navigation">
       <a class="dash-nav-link" :class="{ 'is-active': currentPath === '/DashBoard' }" href="/DashBoard">Dashboard</a>
       <a class="dash-nav-link" :class="{ 'is-active': currentPath === '/Client/FavCompany' }" href="/Client/FavCompany">Companies</a>
+      <a
+        v-if="showAdminFeatures"
+        class="dash-nav-link"
+        :class="{ 'is-active': currentPath === '/Admin/RegisteredUsers' }"
+        href="/Admin/RegisteredUsers"
+      >
+        Admin Users
+      </a>
+      <a
+        v-if="showAdminFeatures"
+        class="dash-nav-link"
+        :class="{ 'is-active': currentPath === '/Admin/UsersActivities' }"
+        href="/Admin/UsersActivities"
+      >
+        User Activity
+      </a>
       <!-- <button type="button" class="dash-nav-link dash-nav-button" @click="sendDueEmails" :disabled="isSendingEmails">Reminders</button> -->
-      <button type="button" class="dash-nav-link dash-nav-button" @click="refreshDashboard" :disabled="isLoading">Refresh</button>
+      <button type="button" class="dash-nav-link dash-nav-button" @click="refreshDashboard" :disabled="isBusy">Refresh</button>
     </nav>
 
     <div class="dash-top-actions">
@@ -21,8 +37,8 @@
         <span v-if="!isSendingEmails"><i class="fa-regular fa-bell"></i></span>
         <span v-else><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>
       </button> -->
-      <button type="button" class="dash-icon-btn" @click="refreshDashboard" :disabled="isLoading" title="Refresh dashboard">
-        <span v-if="!isLoading"><i class="fa-solid fa-rotate-right"></i></span>
+      <button type="button" class="dash-icon-btn" @click="refreshDashboard" :disabled="isBusy" title="Refresh dashboard">
+        <span v-if="!isBusy"><i class="fa-solid fa-rotate-right"></i></span>
         <span v-else><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>
       </button>
       <div class="dash-profile-group">
@@ -62,22 +78,42 @@ export default {
     return {
       userEmail: "",
       isSendingEmails: false,
+      isRefreshing: false,
       currentPath: window.location.pathname,
       showProfileMenu: false
     };
   },
   computed: {
+    isBusy() {
+      return this.isLoading || this.isRefreshing;
+    },
+    showAdminFeatures() {
+      return (this.userEmail || "").trim().toLowerCase() === "info@premiumaccountants.co.uk";
+    },
     userInitial() {
       const source = (this.userEmail || "User").trim();
       return source.charAt(0).toUpperCase() || "U";
     }
   },
   methods: {
-    refreshDashboard() {
-      if (typeof this.$parent.fetchData === 'function') {
-        this.$parent.fetchData();
-      } else {
-        window.location.reload();
+    async refreshDashboard() {
+      if (this.isBusy) return;
+
+      this.isRefreshing = true;
+      try {
+        const res = await axios.post("/api/ClientApi/UpdateAllCompaniesSync");
+        if (!res.data.status) {
+          throw new Error(res.data.message || "Failed to refresh company data.");
+        }
+
+        window.dispatchEvent(new CustomEvent("premiumdm:company-data-synced", {
+          detail: res.data
+        }));
+      } catch (error) {
+        console.error("Error refreshing dashboard data:", error);
+        alert("Failed to refresh company data from Companies House.");
+      } finally {
+        this.isRefreshing = false;
       }
     },
     toggleProfileMenu() {

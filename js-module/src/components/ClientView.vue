@@ -272,8 +272,15 @@
     },
     mounted() {
       this.fetchUserEmail();
+      window.addEventListener("premiumdm:company-data-synced", this.handleCompanyDataSynced);
+    },
+    beforeDestroy() {
+      window.removeEventListener("premiumdm:company-data-synced", this.handleCompanyDataSynced);
     },
     methods: {
+      handleCompanyDataSynced() {
+        this.list();
+      },
       list() {
         axios
           .post("/api/ClientApi/Vlist")
@@ -284,6 +291,7 @@
                 ...item,
                 accountsD: this.formatDate(item.accountsD),
                 cS01D: this.formatDate(item.cS01D),
+                identityVerificationD: this.formatDate(item.identityVerificationD),
                 vatReturnDue: this.formatDate(item.vatReturnDue),
                 type: this.mapCompanyType(item.type)
               }));
@@ -370,7 +378,7 @@
               item.number,
               item.accountsD,
               item.cS01D,
-              item.type,
+              item.identityVerificationD,
               item.status,
               item.quaters,
               item.vatReturnDue,

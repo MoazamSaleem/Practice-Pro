@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Practice_Pro.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,14 +9,10 @@ namespace Practice_Pro.ViewComponents
     public class AdminMenuViewComponent : ViewComponent
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly DbCalls _db;
 
-        private const string SuperAdminEmail = "awaisshahbaz480@gmail.com";
-
-        public AdminMenuViewComponent(UserManager<IdentityUser> userManager, DbCalls db)
+        public AdminMenuViewComponent(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
-            _db = db;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -37,15 +32,7 @@ namespace Practice_Pro.ViewComponents
                         var user = await _userManager.FindByIdAsync(userId);
                         if (user != null)
                         {
-                            if (user.Email == SuperAdminEmail)
-                            {
-                                isAdmin = true;
-                            }
-                            else
-                            {
-                                isAdmin = await _db.UserRolesInfo
-                                    .AnyAsync(r => r.UserId == userId && r.RoleName == "Admin");
-                            }
+                            isAdmin = AppAccess.IsPrimaryAdmin(user.Email);
                         }
                     }
                 }

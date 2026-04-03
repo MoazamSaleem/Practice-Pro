@@ -170,9 +170,7 @@
           this.obj.Number = this.companyData.company_number || "";
           this.obj.Status = this.companyData.company_status || "";
           this.obj.AccountsD = this.formatDate(this.companyData.accounts.next_due || "");
-          // Change: CS01D now maps to last_made_up_to as per user request
-          this.obj.CS01D = this.formatDate(this.companyData.confirmation_statement ? this.companyData.confirmation_statement.last_made_up_to : "");
-          // Change: IdentityVerificationD pulls from next_due as per user request
+          this.obj.CS01D = this.formatDate(this.companyData.confirmation_statement ? this.companyData.confirmation_statement.next_due : "");
           this.obj.IdentityVerificationD = this.formatDate((this.companyData.identity_verification && this.companyData.identity_verification.next_due) ? this.companyData.identity_verification.next_due : (this.companyData.confirmation_statement ? this.companyData.confirmation_statement.next_due : ""));
         }
       },

@@ -373,7 +373,8 @@ export default {
         .map((item) => {
           const dates = [
             this.getDueMeta(item.accountsD || item.AccountsD, "Accounts due"),
-            this.getDueMeta(item.identityVerificationD || item.IdentityVerificationD, "Identity Verification / CS01 Due")
+            this.getDueMeta(item.cS01D || item.CS01D, "Confirmation statement due"),
+            this.getDueMeta(item.identityVerificationD || item.IdentityVerificationD, "Identity verification due")
           ].filter(Boolean);
           if (!dates.length) {
             return null;
@@ -399,6 +400,9 @@ export default {
     }
   },
   methods: {
+    handleCompanyDataSynced() {
+      this.fetchData();
+    },
     buildMetricCard(title, value, icon, tone, sparkline, sparkDots) {
       const palette = {
         positive: { stroke: "#2fbd76", dotFill: "#f2fff8", trendIcon: "fa-solid fa-arrow-trend-up" },
@@ -448,11 +452,10 @@ export default {
         return diff !== null && diff <= 0;
       }).length;
 
-      // Use identityVerificationD for CS01 next due metrics since CS01D is now the "last made up" date
-      this.confirmationDue60 = this.lst.filter((item) => withinRange(this.getDaysDifference(item.identityVerificationD || item.IdentityVerificationD, today), 30, 60)).length;
-      this.confirmationDue30 = this.lst.filter((item) => withinRange(this.getDaysDifference(item.identityVerificationD || item.IdentityVerificationD, today), 0, 30)).length;
+      this.confirmationDue60 = this.lst.filter((item) => withinRange(this.getDaysDifference(item.cS01D || item.CS01D, today), 30, 60)).length;
+      this.confirmationDue30 = this.lst.filter((item) => withinRange(this.getDaysDifference(item.cS01D || item.CS01D, today), 0, 30)).length;
       this.confirmationOverdue = this.lst.filter((item) => {
-        const diff = this.getDaysDifference(item.identityVerificationD || item.IdentityVerificationD, today);
+        const diff = this.getDaysDifference(item.cS01D || item.CS01D, today);
         return diff !== null && diff <= 0;
       }).length;
 
@@ -542,6 +545,10 @@ export default {
   mounted() {
     this.fetchData();
     this.fetchUserEmail();
+    window.addEventListener("premiumdm:company-data-synced", this.handleCompanyDataSynced);
+  },
+  beforeDestroy() {
+    window.removeEventListener("premiumdm:company-data-synced", this.handleCompanyDataSynced);
   }
 };
 </script>

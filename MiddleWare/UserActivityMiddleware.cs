@@ -16,19 +16,33 @@ public class UserActivityMiddleware
 
     public async Task InvokeAsync(HttpContext context, UserManager<IdentityUser> userManager, DbCalls db)
     {
-        if (context.User.Identity.IsAuthenticated)
+        if (context.User?.Identity?.IsAuthenticated == true)
         {
             var user = await userManager.GetUserAsync(context.User);
             if (user != null)
             {
                 var activity = await db.UserActivities.FirstOrDefaultAsync(a => a.UserId == user.Id);
-                if (activity != null)
+
+                if (activity == null)
+                {
+                    activity = new UserActivity
+                    {
+                        UserId = user.Id,
+                        CurrentPage = context.Request.Path,
+                        LastLogin = DateTime.UtcNow,
+                        LoginCountThisMonth = 1,
+                        LastActivityTime = DateTime.UtcNow
+                    };
+                    db.UserActivities.Add(activity);
+                }
+                else
                 {
                     activity.CurrentPage = context.Request.Path;
                     activity.LastActivityTime = DateTime.UtcNow;
                     db.UserActivities.Update(activity);
-                    await db.SaveChangesAsync();
                 }
+
+                await db.SaveChangesAsync();
             }
         }
 

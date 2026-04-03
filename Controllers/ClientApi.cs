@@ -183,12 +183,12 @@ namespace Practice_Pro.Controllers
                             }
                         }
 
-                        // Handle confirmation statement date comparison (Last Made Up To)
-                        string lastCSDateStr = companyHouseData.confirmation_statement?.last_made_up_to;
-                        if (!string.IsNullOrEmpty(lastCSDateStr))
+                        // Handle confirmation statement due date comparison (Next Due)
+                        string nextCSDateStr = companyHouseData.confirmation_statement?.next_due;
+                        if (!string.IsNullOrEmpty(nextCSDateStr))
                         {
-                            DateTime lastCSDate = DateTime.Parse(lastCSDateStr);
-                            string formattedDate = lastCSDate.ToString("yyyy-MM-dd");
+                            DateTime nextCSDate = DateTime.Parse(nextCSDateStr);
+                            string formattedDate = nextCSDate.ToString("yyyy-MM-dd");
 
                             if (company.CS01D != formattedDate)
                             {

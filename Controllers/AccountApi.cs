@@ -156,7 +156,7 @@ namespace Practice_App.Controllers
                             {
                                 var db = scope.ServiceProvider.GetRequiredService<DbCalls>();
 
-                                bool isAdmin = user.Email == "awaisshahbaz480@gmail.com" ||
+                                bool isAdmin = AppAccess.IsPrimaryAdmin(user.Email) ||
                                                await db.UserRolesInfo.AnyAsync(r => r.UserId == user.Id && r.RoleName == "Admin");
 
                                 var claims = new List<Claim>
