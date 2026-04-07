@@ -269,3 +269,27 @@ iframe {
     padding-top: 0;
     padding-bottom: 0;
 }
+
+/* ──────────────────────────────────────────────────────────
+   MOBILE-FIRST GLOBAL CENTERING & VISIBILITY FIXES
+   Ensures section heads and badges are centered on mobile.
+────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .sw-about-tag, .sw-badge, .crumb, .eyebrow {
+        display: inline-flex !important;
+        margin-inline: auto !important;
+        margin-bottom: 16px;
+    }
+
+    .sw-contact-head, .sw-about-head, .sw-services-head, .sw-features-title, .section-head {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    /* Prevent text overflows in cards */
+    .sw-service-card h3, .sw-feature-card h3, .card h3 {
+        word-break: break-word;
+    }
+}

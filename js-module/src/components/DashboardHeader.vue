@@ -1,42 +1,22 @@
 <template>
   <header class="dash-portal-header">
+    <!-- Brand -->
     <a class="dash-brand" href="/">
       <img src="/finanza-1.0.0/img/logo.jpg" alt="PremiumDM Logo" class="dash-logo-img" />
-      <!-- <span class="dash-brand-copy">
-        <strong>PremiumDM</strong>
-        <small>Deadline Management</small>
-      </span> -->
     </a>
 
+    <!-- Desktop nav -->
     <nav class="dash-portal-nav" aria-label="Dashboard navigation">
       <a class="dash-nav-link" :class="{ 'is-active': currentPath === '/DashBoard' }" href="/DashBoard">Dashboard</a>
       <a class="dash-nav-link" :class="{ 'is-active': currentPath === '/Client/FavCompany' }" href="/Client/FavCompany">Companies</a>
-      <a
-        v-if="showAdminFeatures"
-        class="dash-nav-link"
-        :class="{ 'is-active': currentPath === '/Admin/RegisteredUsers' }"
-        href="/Admin/RegisteredUsers"
-      >
-        Admin Users
-      </a>
-      <a
-        v-if="showAdminFeatures"
-        class="dash-nav-link"
-        :class="{ 'is-active': currentPath === '/Admin/UsersActivities' }"
-        href="/Admin/UsersActivities"
-      >
-        User Activity
-      </a>
-      <!-- <button type="button" class="dash-nav-link dash-nav-button" @click="sendDueEmails" :disabled="isSendingEmails">Reminders</button> -->
+      <a v-if="showAdminFeatures" class="dash-nav-link" :class="{ 'is-active': currentPath === '/Admin/RegisteredUsers' }" href="/Admin/RegisteredUsers">Admin Users</a>
+      <a v-if="showAdminFeatures" class="dash-nav-link" :class="{ 'is-active': currentPath === '/Admin/UsersActivities' }" href="/Admin/UsersActivities">User Activity</a>
       <button type="button" class="dash-nav-link dash-nav-button" @click="refreshDashboard" :disabled="isBusy">Refresh</button>
     </nav>
 
+    <!-- Desktop actions -->
     <div class="dash-top-actions">
       <a class="dash-primary-action" href="/Client/InCompany">Add Company</a>
-      <!-- <button type="button" class="dash-icon-btn" @click="sendDueEmails" :disabled="isSendingEmails" title="Send reminders">
-        <span v-if="!isSendingEmails"><i class="fa-regular fa-bell"></i></span>
-        <span v-else><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>
-      </button> -->
       <button type="button" class="dash-icon-btn" @click="refreshDashboard" :disabled="isBusy" title="Refresh dashboard">
         <span v-if="!isBusy"><i class="fa-solid fa-rotate-right"></i></span>
         <span v-else><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span>
@@ -45,7 +25,6 @@
         <div class="dash-profile" @click="toggleProfileMenu" :title="userEmail || 'Current account'">
           <span class="dash-avatar">{{ userInitial }}</span>
         </div>
-        
         <div v-if="showProfileMenu" class="dash-profile-menu">
           <div class="dash-profile-info">
             <strong>Account</strong>
@@ -60,6 +39,47 @@
           </form>
         </div>
       </div>
+    </div>
+
+    <!-- Mobile-only: avatar + hamburger -->
+    <div class="dash-mobile-bar">
+      <div class="dash-profile-group">
+        <div class="dash-profile" @click="toggleProfileMenu" :title="userEmail || 'Current account'">
+          <span class="dash-avatar">{{ userInitial }}</span>
+        </div>
+        <div v-if="showProfileMenu" class="dash-profile-menu">
+          <div class="dash-profile-info">
+            <strong>Account</strong>
+            <span>{{ userEmail }}</span>
+          </div>
+          <div class="dash-menu-divider"></div>
+          <form action="/Account/Logout" method="get" class="dash-logout-form">
+            <button type="submit" class="dash-menu-item is-logout">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Log out</span>
+            </button>
+          </form>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="dash-hamburger"
+        @click="mobileOpen = !mobileOpen"
+        :aria-expanded="String(mobileOpen)"
+        aria-label="Toggle navigation"
+      >
+        <i :class="mobileOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"></i>
+      </button>
+    </div>
+
+    <!-- Mobile nav drawer -->
+    <div class="dash-mobile-drawer" :class="{ 'is-open': mobileOpen }" role="navigation" aria-label="Mobile navigation">
+      <a class="dash-drawer-link" :class="{ 'is-active': currentPath === '/DashBoard' }" href="/DashBoard">Dashboard</a>
+      <a class="dash-drawer-link" :class="{ 'is-active': currentPath === '/Client/FavCompany' }" href="/Client/FavCompany">Companies</a>
+      <a v-if="showAdminFeatures" class="dash-drawer-link" :class="{ 'is-active': currentPath === '/Admin/RegisteredUsers' }" href="/Admin/RegisteredUsers">Admin Users</a>
+      <a v-if="showAdminFeatures" class="dash-drawer-link" :class="{ 'is-active': currentPath === '/Admin/UsersActivities' }" href="/Admin/UsersActivities">User Activity</a>
+      <button type="button" class="dash-drawer-link dash-nav-button" @click="refreshDashboard; mobileOpen = false" :disabled="isBusy">Refresh</button>
+      <a class="dash-drawer-add" href="/Client/InCompany">+ Add Company</a>
     </div>
   </header>
 </template>
@@ -80,7 +100,8 @@ export default {
       isSendingEmails: false,
       isRefreshing: false,
       currentPath: window.location.pathname,
-      showProfileMenu: false
+      showProfileMenu: false,
+      mobileOpen: false
     };
   },
   computed: {
@@ -122,19 +143,7 @@ export default {
     closeProfileMenu(e) {
       if (!this.$el.contains(e.target)) {
         this.showProfileMenu = false;
-      }
-    },
-    async sendDueEmails() {
-      if (this.isSendingEmails) return;
-      this.isSendingEmails = true;
-      try {
-        const res = await axios.post("/api/HomeApi/SendDueEmails");
-        alert(res.data.message);
-      } catch (error) {
-        console.error("Error sending emails:", error);
-        alert("Failed to send emails.");
-      } finally {
-        this.isSendingEmails = false;
+        this.mobileOpen = false;
       }
     },
     fetchUserEmail() {
@@ -160,20 +169,135 @@ export default {
 </script>
 
 <style>
-/* Global styles for the dashboard header so it works across components if needed, or put in scoped if only used here */
+/* ──────────────────────────────────────────────────────────
+   Dashboard Header – Mobile-first
+────────────────────────────────────────────────────────── */
+
+/* Base (mobile): brand + mobile-bar in a row */
 .dash-portal-header {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 10px 24px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
   background: #ffffff;
   border-bottom: 1px solid #efe7f4;
   position: sticky;
   top: 0;
   z-index: 1000;
+  flex-wrap: wrap;
 }
 
+/* Desktop nav & actions hidden by default, shown at ≥760 px */
+.dash-portal-nav,
+.dash-top-actions {
+  display: none;
+}
+
+/* Mobile-only cluster (avatar + hamburger) */
+.dash-mobile-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+/* Mobile drawer */
+.dash-mobile-drawer {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0 12px;
+  border-top: 1px solid #f0eaf6;
+}
+
+.dash-mobile-drawer.is-open {
+  display: flex;
+}
+
+.dash-drawer-link {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: #81728e;
+  padding: 10px 8px;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+  display: block;
+}
+
+.dash-drawer-link.is-active {
+  color: #126ADB;
+  background: #edf5ff;
+}
+
+.dash-drawer-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 9px;
+  background: #126ADB;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Hamburger button */
+.dash-hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #e8dff0;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #126ADB;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ≥ 760 px: switch to desktop layout */
+@media (min-width: 760px) {
+  .dash-portal-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding: 10px 24px;
+    flex-wrap: nowrap;
+  }
+
+  .dash-portal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .dash-top-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+  }
+
+  /* Hide mobile-only elements */
+  .dash-mobile-bar,
+  .dash-mobile-drawer,
+  .dash-mobile-drawer.is-open,
+  .dash-hamburger {
+    display: none !important;
+  }
+}
+
+/* ── Shared sub-components ── */
 .dash-logo-img {
   height: 42px;
   border-radius: 6px;
@@ -191,28 +315,6 @@ export default {
 .dash-nav-link:hover,
 .dash-primary-action:hover {
   text-decoration: none;
-}
-
-
-
-.dash-brand-copy strong {
-  color: #222036;
-  font-size: 16px;
-  line-height: 1.1;
-}
-
-.dash-brand-copy small {
-  color: #85778f;
-  font-size: 9px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.dash-portal-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
 }
 
 .dash-nav-link {
@@ -234,13 +336,6 @@ export default {
 .dash-icon-btn:disabled {
   opacity: 0.55;
   cursor: wait;
-}
-
-.dash-top-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 14px;
 }
 
 .dash-primary-action {

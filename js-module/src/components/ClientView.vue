@@ -614,61 +614,37 @@
 </script>
 
 <style scoped>
+  /* Table: always horizontally scrollable */
   .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Full-screen modal on all mobile */
+  .modal-right {
+    width: 100%;
     height: 100vh;
-    overflow-y: auto;
+    margin: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
   }
+
+  .modal.show .modal-right {
+    transform: translateX(0%);
+  }
+
+  /* Side-panel only on ≥ 768 px */
   @media (min-width: 768px) {
     .modal-right {
       position: fixed;
       right: 0;
       top: 0;
       width: 40%;
-      height: 100vh;
-      margin: 0;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
     }
+  }
 
-    .modal.show .modal-right {
-      transform: translateX(0%);
-    }
-  }
-  /* Desktop - normal table display */
-  @media (min-width: 1486px) {
-    .table-container {
-      overflow-x: hidden;
-    }
-
-    #tbl {
-      width: 100% !important;
-    }
-  }
-  /* Fullscreen modal on small screens */
-  @media (max-width: 1485px) {
-    .modal-right {
-      width: 100%;
-      transform: translateX(0);
-    }
-  }
   .nowrap {
-    white-space: nowrap; /* Prevents wrapping on large screens */
-  }
-  /* Modal adjustments */
-  @media (min-width: 768px) {
-    .modal-right {
-      position: fixed;
-      right: 0;
-      top: 0;
-      width: 40%;
-      height: 100vh;
-      margin: 0;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .modal.show .modal-right {
-      transform: translateX(0%);
-    }
+    white-space: nowrap;
   }
 </style>

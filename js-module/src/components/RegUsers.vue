@@ -227,7 +227,7 @@ export default {
 .admin-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f3f7ff, #ffffff);
-  padding: 40px 60px;
+  padding: 20px 14px;
   font-family: "Segoe UI", sans-serif;
   color: #243246;
 }
@@ -286,9 +286,9 @@ export default {
 
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 24px;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 18px;
 }
 
 .summary-card {
@@ -316,10 +316,12 @@ export default {
 }
 
 .table-container {
-  margin-top: 24px;
+  margin-top: 20px;
   background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .styled-table {
@@ -490,18 +492,29 @@ export default {
   }
 }
 
-@media (max-width: 960px) {
-  .admin-page {
-    padding: 26px 18px;
-  }
-
+@media (min-width: 480px) {
   .admin-header {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
   }
+}
 
+@media (min-width: 600px) {
   .summary-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .admin-page {
+    padding: 32px 40px;
+  }
+}
+
+@media (min-width: 960px) {
+  .admin-page {
+    padding: 40px 60px;
   }
 }
 </style>

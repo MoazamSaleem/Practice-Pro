@@ -554,29 +554,26 @@ export default {
 </script>
 
 <style scoped>
+/* ────────────────────────────────────────────────────────
+   Dashboard.vue – Mobile-first scoped styles
+──────────────────────────────────────────────────────── */
+
+/* Shell – full width on mobile, constrained on desktop */
 .dash-shell {
-  width: min(1660px, calc(100% - 40px));
-  margin: 76px auto 56px;
+  width: calc(100% - 20px);
+  margin: 24px auto 40px;
   font-family: "Rethink Sans", sans-serif;
 }
 
 .dash-frame {
   overflow: hidden;
-  border-radius: 34px;
+  border-radius: 20px;
   border: 1px solid #e8dcf0;
   background: linear-gradient(180deg, #fbf9fd 0%, #f7f4fb 100%);
-  box-shadow: 0 34px 78px rgba(63, 31, 88, 0.08);
+  box-shadow: 0 16px 40px rgba(63, 31, 88, 0.08);
 }
 
-.dash-portal-header {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 20px;
-  padding: 24px 34px;
-  background: #ffffff;
-  border-bottom: 1px solid #efe7f4;
-}
+/* Scoped header styles removed – handled by DashboardHeader.vue global styles */
 
 .dash-brand {
   display: inline-flex;
@@ -707,11 +704,11 @@ export default {
 /* Removed redundant .dash-body padding as it's handled by global dashboard.css */
 
 
+/* Page head: stack on mobile, row on bigger screens */
 .dash-page-head {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 22px;
+  flex-direction: column;
+  gap: 14px;
   padding: 2px 0 20px;
 }
 
@@ -739,8 +736,8 @@ export default {
 }
 
 .dash-account-pill {
-  min-height: 56px;
-  padding: 0 22px;
+  min-height: 48px;
+  padding: 0 16px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -748,15 +745,18 @@ export default {
   border: 1px solid #e5dae9;
   background: #ffffff;
   color: #594868;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
+  width: 100%;
+  justify-content: center;
 }
 
+/* Cards: 1-col mobile → 2-col 640 px → 3-col 960 px */
 .dash-cards {
-  margin-top: 18px;
+  margin-top: 14px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  grid-template-columns: 1fr;
+  gap: 14px;
 }
 
 .dash-cards-secondary {
@@ -881,11 +881,12 @@ export default {
   flex-shrink: 0;
 }
 
+/* Main grid: 1-col mobile → 2-col 768 px → 3-col 1100 px */
 .dash-main-grid {
-  margin-top: 22px;
+  margin-top: 14px;
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 22px;
+  grid-template-columns: 1fr;
+  gap: 14px;
 }
 
 .dash-panel {
@@ -999,7 +1000,7 @@ export default {
 
 .dash-chart-wrap {
   margin-top: 20px;
-  min-height: 390px;
+  min-height: 260px;
 }
 
 .dash-review-row {
@@ -1074,108 +1075,112 @@ export default {
   text-align: center;
 }
 
-@media (max-width: 1200px) {
-  .dash-portal-header {
-    grid-template-columns: 1fr;
-    justify-items: start;
+/* ── Progressive enhancement breakpoints ── */
+
+/* 480 px: 2-column cards */
+@media (min-width: 480px) {
+  .dash-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 640 px: wider padding, bigger pill */
+@media (min-width: 640px) {
+  .dash-frame {
+    border-radius: 28px;
   }
 
-  .dash-portal-nav,
-  .dash-top-actions {
+  .dash-account-pill {
+    width: auto;
     justify-content: flex-start;
+  }
+
+  .dash-page-head {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .dash-card-bottom {
+    align-items: flex-end;
+  }
+}
+
+/* 768 px: 2-column main grid */
+@media (min-width: 768px) {
+  .dash-shell {
+    width: calc(100% - 32px);
+    margin: 32px auto 48px;
   }
 
   .dash-main-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
   .dash-panel-review {
     grid-column: 1 / -1;
   }
-}
 
-@media (max-width: 960px) {
-  .dash-shell {
-    width: calc(100% - 18px);
-    margin: 46px auto 40px;
-  }
-
-  .dash-page-head,
-  .dash-cards,
-  .dash-main-grid {
-    grid-template-columns: 1fr;
-    flex-direction: column;
-  }
-
-  .dash-review-row {
-    grid-template-columns: 1fr;
-  }
-
-  .dash-review-status {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 640px) {
-  .dash-frame {
-    border-radius: 24px;
-  }
-
-  .dash-portal-header,
-  .dash-body {
-    padding: 18px;
-  }
-
-  .dash-brand-mark {
-    width: 54px;
-    height: 54px;
-    font-size: 20px;
-  }
-
-  .dash-brand-copy strong {
-    font-size: 22px;
-  }
-
-  .dash-primary-action,
-  .dash-account-pill {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .dash-top-actions {
-    width: 100%;
-    flex-wrap: wrap;
+  .dash-chart-wrap {
+    min-height: 320px;
   }
 
   .dash-card,
   .dash-panel {
-    padding: 18px;
+    padding: 22px 24px;
+  }
+}
+
+/* 960 px: 3-column cards */
+@media (min-width: 960px) {
+  .dash-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
   }
 
-  .dash-page-head h1 {
-    font-size: 40px;
+  .dash-review-row {
+    grid-template-columns: 120px minmax(0, 1fr) auto;
   }
 
-  .dash-page-copy,
-  .dash-card-trend,
-  .dash-card-trend small {
-    font-size: 16px;
+  .dash-review-status {
+    justify-content: flex-end;
+  }
+}
+
+/* 1100 px: 3-column main grid */
+@media (min-width: 1100px) {
+  .dash-shell {
+    width: min(1660px, calc(100% - 40px));
+    margin: 48px auto 56px;
   }
 
-  .dash-card-bottom {
-    flex-direction: column;
-    align-items: flex-start;
+  .dash-frame {
+    border-radius: 34px;
+    box-shadow: 0 34px 78px rgba(63, 31, 88, 0.08);
   }
 
-  .dash-sparkline {
-    width: 100%;
-    max-width: 140px;
+  .dash-main-grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 22px;
+  }
+
+  .dash-panel-review {
+    grid-column: auto;
+  }
+
+  .dash-chart-wrap {
+    min-height: 390px;
   }
 
   .dash-summary-meta,
   .dash-panel-head-chart {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .dash-cards {
+    gap: 22px;
   }
 }
 </style>

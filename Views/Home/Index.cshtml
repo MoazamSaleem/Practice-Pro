@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Premium Deadline Management</title>
     <meta name="description" content="Premium Deadline Management helps accountancy teams manage Companies House filing deadlines without missed submissions." />
-    <link rel="icon" href="~/finanza-1.0.0/img/logo.jpg" />
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Rethink+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
@@ -77,10 +78,12 @@
 
         .sw-hero-grid {
             display: grid;
-            grid-template-columns: 5fr 7fr;
+            grid-template-columns: 1fr;
             align-items: center;
             gap: 24px;
         }
+        /* Image on top on mobile */
+        .sw-image-wrap { order: -1; justify-content: center; }
 
         .sw-badge {
             display: inline-flex;
@@ -309,7 +312,7 @@
         .sw-about-grid {
             margin-top: 52px;
             display: grid;
-            grid-template-columns: 7fr 5fr;
+            grid-template-columns: 1fr;
             gap: 34px;
             align-items: center;
         }
@@ -358,7 +361,7 @@
         .sw-about-stats {
             margin-top: 30px;
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: 1fr;
             gap: 12px;
         }
 
@@ -445,9 +448,9 @@
         }
 
         .sw-features {
-            margin-inline: calc(20% - 50vw);
+            margin-inline: calc(50% - 50vw);
             background: #f5f7fa;
-            padding: var(--section-py) 10;
+            padding: var(--section-py) 0;
             font-family: "Rethink Sans", sans-serif;
         }
 
@@ -502,7 +505,7 @@
         .sw-features-grid {
             margin-top: 36px;
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: 1fr;
             gap: 18px;
         }
 
@@ -593,7 +596,7 @@
         .sw-services-grid {
             margin-top: 8px;
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: 1fr;
             gap: 22px;
         }
 
@@ -698,7 +701,7 @@
             position: relative;
             z-index: 1;
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: 1fr;
             gap: 36px;
             align-items: center;
         }
@@ -997,9 +1000,9 @@
         }
 
         .sw-contact {
-            margin-inline: calc(20% - 50vw);
+            margin-inline: calc(50% - 50vw);
             background: #f5f7fa;
-            padding: var(--section-py) 10;
+            padding: var(--section-py) 0;
             font-family: "Rethink Sans", sans-serif;
         }
 
@@ -1351,6 +1354,28 @@
             .sw-contact-textarea { min-height: 170px; }
             .sw-contact-submit { min-height: 52px; width: 100%; }
         }
+
+        /* 560 px: topbar adjustments */
+        @@media (max-width: 560px) {
+            .topbar-wrap { justify-content: center; }
+            .topbar-group:first-child { display: none; }
+        }
+
+        /* ── DESKTOP: restore multi-column grids ── */
+        @@media (min-width: 680px) {
+            .sw-features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .sw-services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .sw-about-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @@media (min-width: 1120px) {
+            .sw-hero-grid { grid-template-columns: 5fr 7fr; }
+            .sw-image-wrap { order: 0; justify-content: flex-end; }
+            .sw-about-grid { grid-template-columns: 7fr 5fr; }
+            .sw-about-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .sw-services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .sw-sync-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
     </style>
     <link rel="stylesheet" href="~/css/responsive-overrides.css" />
     <link rel="stylesheet" href="~/css/cookie-consent.css" />
@@ -1372,7 +1397,7 @@
                             <p class="sw-point"><i class="fa-solid fa-circle-check"></i><span>Easier Workflow</span></p>
                         </div>
 
-                        <div class="sw-users">
+                        <!-- <div class="sw-users">
                             <ul class="sw-avatars">
                                 <li><img src="~/skywave/avatar-7.jpg" alt="User avatar 1" /></li>
                                 <li><img src="~/skywave/avatar-6.jpg" alt="User avatar 2" /></li>
@@ -1383,7 +1408,7 @@
                                 <b>24/7</b>
                                 <span>Available</span>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="sw-actions">
                             <a class="sw-btn-primary" href="/Account/Signup">Explore Now</a>
