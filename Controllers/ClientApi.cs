@@ -26,7 +26,21 @@ namespace Practice_Pro.Controllers
 
         public class _add
         {
-            public Client obj { get; set; }
+            public _addObj obj { get; set; }
+        }
+
+        public class _addObj
+        {
+            public string Name { get; set; }
+            public string Number { get; set; }
+            public string AccountsD { get; set; }
+            public string CS01D { get; set; }
+            public string IdentityVerificationD { get; set; }
+            public string Type { get; set; }
+            public string Status { get; set; }
+            public string Quaters { get; set; }
+            public string VatReturnDue { get; set; }
+            public string VatNum { get; set; }
         }
         public JsonResult SaveDa(_add data)
         {
@@ -36,8 +50,33 @@ namespace Practice_Pro.Controllers
                 return new JsonResult(new { status = false, message = "Unauthorized access" });
             }
 
-            data.obj.UserId = userId; // Assign client to logged-in user
-            db.client.Add(data.obj);
+            if (data == null || data.obj == null)
+            {
+                return new JsonResult(new { status = false, message = "Invalid request payload" });
+            }
+
+            int parsedVatNum = 0;
+            if (!string.IsNullOrWhiteSpace(data.obj.VatNum))
+            {
+                int.TryParse(data.obj.VatNum, out parsedVatNum);
+            }
+
+            var client = new Client
+            {
+                Name = data.obj.Name ?? string.Empty,
+                Number = data.obj.Number ?? string.Empty,
+                AccountsD = data.obj.AccountsD ?? string.Empty,
+                CS01D = data.obj.CS01D ?? string.Empty,
+                IdentityVerificationD = data.obj.IdentityVerificationD ?? string.Empty,
+                Type = data.obj.Type ?? string.Empty,
+                Status = data.obj.Status ?? string.Empty,
+                Quaters = data.obj.Quaters ?? string.Empty,
+                VatReturnDue = data.obj.VatReturnDue ?? string.Empty,
+                VatNum = parsedVatNum,
+                UserId = userId
+            };
+
+            db.client.Add(client);
             db.SaveChanges();
             return new JsonResult(new { status = true });
         }

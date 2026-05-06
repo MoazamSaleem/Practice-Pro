@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PremiumDM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb219bde183b8f95d1513498ffcf54d3954e0e08")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a4ec2cca5a2f180af702325daa572dbf31bc0a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("PremiumDM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PremiumDM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

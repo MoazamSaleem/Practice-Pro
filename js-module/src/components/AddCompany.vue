@@ -107,7 +107,7 @@
           Status: "",
           Quaters: "",
           VatReturnDue: "",
-          VatNum: ""
+          VatNum: null
         },
         errors: {}
       };
@@ -188,8 +188,16 @@
         if (Object.keys(this.errors).length > 0) {
           return;
         }
+        const parsedVatNum = Number(this.obj.VatNum);
+        const payload = {
+          ...this.obj,
+          // Backend expects int; avoid sending empty string which fails model binding.
+          VatNum: this.obj.VatNum === "" || this.obj.VatNum === null || typeof this.obj.VatNum === "undefined"
+            ? "0"
+            : (Number.isFinite(parsedVatNum) ? String(parsedVatNum) : "0")
+        };
         axios
-          .post("/api/ClientApi/SaveDa", { obj: this.obj })
+          .post("/api/ClientApi/SaveDa", { obj: payload })
           .then((res) => {
             if (res.data.status) {
               alert("Saved Successfully");
@@ -201,7 +209,12 @@
           })
           .catch((err) => {
             console.error(err);
-            alert("Error while saving!");
+            if (err.response && err.response.data) {
+              console.error("SaveDa response:", err.response.data);
+              alert(`Error while saving: ${JSON.stringify(err.response.data)}`);
+            } else {
+              alert("Error while saving!");
+            }
           });
       },
       calculateVatReturnDue() {
@@ -228,7 +241,7 @@
             dueDate = null; 
         }
 
-        this.obj.vatReturnDue = dueDate ? dueDate.toISOString().split("T")[0] : "";
+        this.obj.VatReturnDue = dueDate ? dueDate.toISOString().split("T")[0] : "";
       },
       clear() {
         this.obj = {
@@ -239,7 +252,7 @@
           IdentityVerificationD: "",
           Status: "",
           Quaters: "",
-          VatNum: "",
+          VatNum: null,
           VatReturnDue: ""
         };
         this.companyData = null;
