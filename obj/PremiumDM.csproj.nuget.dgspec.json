@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Moazam\\Desktop\\PremiumDM2\\Practice Pro\\PremiumDM.csproj": {}
+    "C:\\Users\\HOME\\Desktop\\Practice-Pro\\PremiumDM.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Moazam\\Desktop\\PremiumDM2\\Practice Pro\\PremiumDM.csproj": {
+    "C:\\Users\\HOME\\Desktop\\Practice-Pro\\PremiumDM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Moazam\\Desktop\\PremiumDM2\\Practice Pro\\PremiumDM.csproj",
+        "projectUniqueName": "C:\\Users\\HOME\\Desktop\\Practice-Pro\\PremiumDM.csproj",
         "projectName": "PremiumDM",
-        "projectPath": "C:\\Users\\Moazam\\Desktop\\PremiumDM2\\Practice Pro\\PremiumDM.csproj",
-        "packagesPath": "C:\\Users\\Moazam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Moazam\\Desktop\\PremiumDM2\\Practice Pro\\obj\\",
+        "projectPath": "C:\\Users\\HOME\\Desktop\\Practice-Pro\\PremiumDM.csproj",
+        "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HOME\\Desktop\\Practice-Pro\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Moazam\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\HOME\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -93,19 +93,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
+              "version": "[8.0.30, 8.0.30]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.25, 8.0.25]"
+              "version": "[8.0.30, 8.0.30]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
+              "version": "[8.0.30, 8.0.30]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.25, 8.0.25]"
+              "version": "[8.0.30, 8.0.30]"
             }
           ],
           "frameworkReferences": {
@@ -116,7 +116,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.317/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
