@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Practice Pro\PremiumDM\Practice Pro\**\*" />
+    <Content Remove="Practice Pro\PremiumDM\Practice Pro\**\*" />
+    <EmbeddedResource Remove="Practice Pro\PremiumDM\Practice Pro\**\*" />
+    <None Remove="Practice Pro\PremiumDM\Practice Pro\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\AdminLTE\.github\codeql\codeql-config.yml" />
     <None Include="wwwroot\AdminLTE\.github\CONTRIBUTING.md" />
     <None Include="wwwroot\AdminLTE\.github\dependabot.yml" />

@@ -7,15 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C83CGLH9NR"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-C83CGLH9NR');
-    </script>
+    @await Html.PartialAsync("_GoogleTag")
     <!-- Favicon -->
     <link href="~/finanza-1.0.0/img/logo.jpg" rel="icon">
 
